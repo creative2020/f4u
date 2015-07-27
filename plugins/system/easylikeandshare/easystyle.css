@@ -1,0 +1,74 @@
+
+@charset "utf-8";
+/* Social Media */
+div.shareit a {display:inline-block;width:auto;outline:none;}
+div.shareit a img {border:none ! important;}
+/* div.shareit a:hover {background:none ! important;} */
+div.shareit a:link {color: #000000 ! important; text-decoration: none ! important; }
+div.shareit a:active {color: #000000 ! important; text-decoration: none ! important; }
+div.shareit a:visited {color: #000000  ! important; text-decoration: none ! important; }
+div.shareit a:hover {color: #000000  ! important; text-decoration: none  ! important; }
+.clr {clear:both;}
+
+.emailbut img {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-bottom-color: -moz-use-text-color;
+    border-bottom-style: none;
+    border-bottom-width: 0;
+    border-image-outset: 0 0 0 0;
+    border-image-repeat: stretch stretch;
+    border-image-slice: 100% 100% 100% 100%;
+    border-image-source: none;
+    border-image-width: 1 1 1 1;
+    border-left-color-ltr-source: physical;
+    border-left-color-rtl-source: physical;
+    border-left-color-value: -moz-use-text-color;
+    border-left-style-ltr-source: physical;
+    border-left-style-rtl-source: physical;
+    border-left-style-value: none;
+    border-left-width-ltr-source: physical;
+    border-left-width-rtl-source: physical;
+    border-left-width-value: 0;
+    border-right-color-ltr-source: physical;
+    border-right-color-rtl-source: physical;
+    border-right-color-value: -moz-use-text-color;
+    border-right-style-ltr-source: physical;
+    border-right-style-rtl-source: physical;
+    border-right-style-value: none;
+    border-right-width-ltr-source: physical;
+    border-right-width-rtl-source: physical;
+    border-right-width-value: 0;
+    border-top-color: -moz-use-text-color;
+    border-top-style: none;
+    border-top-width: 0;
+}
+	
+
+.contentpane .shareit {display: none ! important;}
+.s-box .shareit {display: none ! important;}
+.component-body .shareit {display: none ! important;}
+
+div.delic-tall{font-family:Arial,Tahoma;font-size:11px;width:50px;}
+div.delic-tall a.icon,div.delic-tall a.count{color:#FFF!important;display:block;-moz-border-radius:3px;-webkit-border-radius:3px;outline:none!important;text-decoration:none!important;}
+div.delic-tall a.icon{background:#fff;border:1px solid #ccc;height:38px;overflow:hidden;position:relative;direction:ltr;}
+div.delic-tall a.icon:hover{border-color:#666;}
+div.delic-tall a.count{margin-top:2px;text-align:center;font-size:12px;line-height:18px;height:18px;background:#3274D0;border:#3274D0 1px solid;text-shadow:#2A5580 1px 1px 0;}
+div.delic-tall a.count:hover{background:#369;border-color:#369;}
+div.delic-tall a.count:active{background:#000;border:#333 1px solid;text-shadow:#222 1px 1px 0;outline:none;}
+div.delic-wide{font-family:Arial,Tahoma;font-size:11px;width:90px;}
+div.delic-wide a.icon,div.delic-wide a.count{display:block;float:left;line-height:18px;border:#666 solid 1px;-webkit-border-radius:3px;-moz-border-radius:3px;margin-right:1px;outline:none!important;text-decoration:none!important;height:18px;overflow:hidden;color:#FFF!important;}
+div.delic-wide a.icon{background:#fff;border-color:#ccc;width:20px;position:relative;direction:ltr;}
+div.delic-wide a.icon:hover{border-color:#666;}
+div.delic-wide a.count{font-size:12px;background:#3274D0;border-color:#3274D0;width:50px;text-align:center;text-shadow:#2A5580 1px 1px 0;}
+div.delic-wide a.count:hover{background:#369;border-color:#369;text-shadow:#369 1px 1px 0;}
+div.delic-wide a.count:active{background:#000;border-color:#333;text-shadow:#222 1px 1px 0;}
+div.delic-tall a.icon:hover *,div.delic-wide a.icon:hover *{opacity:.85;filter:alpha(opacity=85);}
+div.delic-tall a.icon *,div.delic-wide a.icon *{width:50%;height:50%;position:absolute;margin:0!important;}
+div.delic-tall h1,div.delic-wide h1{background:#3274D0;left:50%;top:0;}
+div.delic-tall h2,div.delic-wide h2{background:#000;left:0;top:50%;}
+div.delic-tall h3,div.delic-wide h3{background:#D3D2D2;left:50%;top:50%;}
+div.delic-tall a.count i,div.delic-wide a.count i{display:none;font-style:normal;}
+div.delic-tall a.count b,div.delic-wide a.count b{font-weight:normal}

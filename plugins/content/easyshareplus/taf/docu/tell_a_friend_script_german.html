@@ -1,0 +1,817 @@
+<?xml version="1.0"?>
+<!doctype html public "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir=" ltr
+">
+<head>
+  <title> Dokumentation Tell A Friend Script
+</title>
+    <meta http-equiv="Content-Type" content="text/html; charset= iso-8859-1
+" />
+    <meta name="robots" content="noindex">
+
+
+
+<style type="text/css">
+<!--
+  h4 {
+      font-family:Tahoma,Helvetica,Geneva,Sans-serif,sans-serif;
+      margin-top:15px;
+      text-align:center;
+  }
+
+  
+  h5 {
+      font-family:Tahoma,Helvetica,Geneva,Sans-serif,sans-serif;
+      margin-top:50px;
+      margin-bottom:5px;
+      text-align:center;
+      font-size:11pt;
+  }
+
+  
+  p, td, br, form, ol, a, ul, li {
+      font-family:Verdana,Helvetica,Geneva,Sans-serif,sans-serif;
+      font-size:10.5pt;
+  }
+
+   
+  body {
+      background-color:#FFFFFF;
+  }   
+   
+
+  .chapter {
+      width:650px;
+      border-width:1px;
+      border-style:solid;
+      border-color:#006699;
+      margin-left:50px;
+      padding:10px;
+      margin-bottom:20px;
+      background-color:#EFEFEF;
+      line-height:14pt;
+  }
+
+  
+  .code {
+      font-family:Courier New;
+  }
+
+  
+  .links {
+      width:650px;
+      margin-left:50px;
+      padding:5px;
+      margin-bottom:10px;
+      text-align:center;
+  }
+  
+      
+  .strong {
+      font-weight:bold;
+  }
+
+-->
+</style>
+
+<body>
+  
+  <a name="top"></a>
+    
+
+  <div class="chapter"><a name="ad"></a>
+<h4>Tell A Friend Script präsentiert: Online Terminreservierung</h4>
+<p> Unser Programm <a href="http://www.schedule-organizer.de/">Schedule Organizer</a> ermöglicht den Kunden, Patienten oder Mandanten die Terminreservierung über die Homepage der Firma, ihres Arztes oder ihres Beraters. Das PHP-Script erleichtert und automatisiert die Terminverwaltung - die zuständigen Mitarbeiter werden entlastet, denn es müssen weniger Telefonanrufe entgegen genommen oder weniger Faxe und Briefe beantwortet werden.
+</p>
+<p> <a href="http://www.schedule-organizer.de/">Schedule Organizer Website</a>
+ 
+ 
+ 
+</p>
+<p align="right"><a href="#top"> Nach oben
+</a></p></div>
+<div class="chapter"><a name="thanks"></a>
+<h4>Dokumentation Tell-A-Friend-Script</h4>
+<p> Vielen Dank für Ihr Interesse an unserem Tell-A-Friend-Script. Wir empfehlen Ihnen, sich Zeit für die Lektüre dieser Anleitung zu nehmen. 
+ 
+ 
+</p>
+<p align="right"><a href="#top"> Nach oben
+</a></p></div>
+<div class="links"><a href="#function">Funktionsweise</a>&nbsp;&nbsp;
+<a href="#configuration">Konfiguration</a>&nbsp;&nbsp;
+<a href="#html">HTML-Templates</a>&nbsp;&nbsp;
+<a href="#mail">E-Mail-Templates</a>&nbsp;&nbsp;
+<a href="#logs">Log-Dateien</a>&nbsp;&nbsp;
+<a href="#support">Hilfe&nbsp;und&nbsp;Support</a>&nbsp;&nbsp;
+<a href="#license">Lizenz-Information</a>&nbsp;&nbsp;
+</div>
+<div class="chapter"><a name="introduction"></a>
+<h4>Einleitung</h4>
+<p> Das Tell-A-Friend-Script ermöglicht Ihnen, Ihre Website von den Besuchern weiterempfehlen zu lassen. Dazu werden Informationen aus dem Formular und der URL der Seite per E-Mail an einen Empfänger gesandt.
+</p>
+<p> Bitte achten Sie darauf, dass Sie alle Dateien im Text-Modus (ASCII-Modus) auf Ihren Server kopieren.
+</p>
+<p> Die E-Mails können sowohl im Text- als auch im HTML-Format versendet werden. Darüber hinaus verfügt das Script über mehrere Sicherheitsfunktionen um den Missbrauch durch Dritte zu verhindern. Außerdem bietet das Script die Möglichkeit, alle versandten Nachrichten mitzuloggen. 
+</p>
+<p> Das Layout von Formular und E-Mail lässt sich mit Hilfe von Templates nach Ihren Wünschen anpasse
+</p>
+<p> Es ist wichtig, dass das Script entweder über einen Link oder über ein Formular auf ihrer Website aufgerufen wird. Aus Sicherheitsgründen wird dabei die Verweisseite überprüft und mit den Angaben der Script-Konfiguration verglichen. Bei Übereinstimmung wird das Script ausgeführt.
+</p>
+<p> Das Script ist für den direkten über einen Link und für den indirekten Aufruf über ein bestehendes Formular ausgelegt. Beim direkten Aufruf des Scripts wird die Datei index.php direkt verlinkt und die darin voreingestellten Templates (HTML und Mail) verwendet.
+</p>
+<p> Beim indirekten Aufruf wird das Script durch ein bereits bestehendes Formular in einer HTML-Seite aufgerufen. Durch diese Methode können Sie mehrere Formulare in Ihrer Seite mit demselben Script versenden. HTML- und Mail-Templates sowie alle weiteren Parameter für das Script können mit Hilfe von Hidden-Formularfeldern im HTML-Formular definiert werden.
+</p>
+<p> Durch die indirekte Methode können Sie Ihre bestehenden Kontaktformulare ohne aufwändige Änderungen mit diesem Script weiter betreiben.
+</p>
+<p> Das HTML-Template wurde nach den Spezifikationen für XHTML 1.0 erstellt. Deshalb enthalten alle einfachen Tags (&lt;br&gt; oder &lt;input&gt;) einen abschließenden Slash (&lt;br /&gt; oder &lt;input type=“text“ name=“feld“ /&gt;).
+ 
+ 
+</p>
+<p align="right"><a href="#top"> Nach oben
+</a></p></div>
+<div class="chapter"><a name="configuration"></a>
+<h4>Konfiguration des Scripts</h4>
+<p> Achtung: Wenn Sie folgende Fehlermeldung beim Aufruf des Scripts erhalten - 'Falscher oder leerer Referrer (Verweisseite)!' - dann müssen Sie in der Datei 'index.php' in die Variable '$referring_server' Ihren Servernamen (also Ihre Domain mit und ohne www und am besten auch die IP-Adresse) eintragen.
+</p>
+<p> Beispiel:
+</p>
+<p class="code"> $referring_server = 'www.example.com, example.com, 192.0.34.166';
+</p>
+<p> Für den Fall, dass Sie alle Daten korrekt eingegeben haben und trotzdem diese Fehlermeldung erhalten, stellen Sie bitte sicher, dass Sie das Script über einen Link von Ihrer Website aus aufrufen.
+</p>
+<p> Weitere Variablen in der Datei "index.php": 
+</p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap"> $script_root	</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	Standardmäßig enthält diese Variable folgenden Wert: "./". Das bedeutet, dass alle Pfade im Script-Verzeichnis beginnen. Sie können den Pfad ändern, wenn Sie das Script an anderer Stelle Ihrer Website einbinden (include) möchten.
+<br /><br /></td>
+                                     </tr>
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap"> $allow_empty_referer	</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	Einige Programme auf Seiten des Benutzers können die Anzeige des Referrers (Verweisseite) verhindern, wie zum Beispiel Firewall-Software oder Web-Browser. Sie können den Zugang mit leerem Referrer verhindern, wenn Sie die Variable auf "no" setzen oder erlauben, wenn Sie die Variable auf "yes" setzen.
+<br /><br /></td>
+                                     </tr>
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap"> $language	</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	Tragen Sie hier das Kürzel für die Sprache ein (z.B.: de oder en). Welche Sprachen verfügbar sind können Sie im Verzeichnis 'languages’ herausfinden. 
+<br /><br /></td>
+                                     </tr>
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap">			</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	Die folgenden Funktionen sollen die die Missbrauchsmöglichkeit des Scripts durch Dritte (Spammer) einschränken. Sie können die Anzahl der gesendeten E-Mails an die E-Mail-Adresse des Benutzers, an die E-Mail-Adresse des Empfängers oder/und an die IP-Adresse des Benutzers koppeln.
+<br /><br /></td>
+                                     </tr>
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap"> $ip_banlist	</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	In dieser Variable können Sie IP-Adressen von Servern eintragen, die Sie von der Nutzung des Scripts ausschließen möchten. Wenn Sie diese Funktion nicht nutzen möchten, lassen Sie die Variable einfach frei. 
+<br /><br /></td>
+                                     </tr>
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap"> $sender_count	</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	Sie können bestimmen, wie oft und innerhalb welchen Zeitraums E-Mails mit der selben E-Mail-Adresse als Absender versandt werden können. Tragen Sie dazu die Anzahl der E-Mails mit der selben Absender-E-Mail (0 schaltet die Funktion ab) ein.
+<br /><br /></td>
+                                     </tr>
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap"> $sender_duration	</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	Angabe des Zeitraums in ganzen Stunden (1, 2, 5, 10, 20, 300). Nach Ablauf kann die E-Mail-Adresse wieder als Absender benutzt werden.
+<br /><br /></td>
+                                     </tr>
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap"> $recipient_count	</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	Sie können - analog zu oben - bestimmen, wie oft und innerhalb welchen Zeitraums E-Mails an dieselbe E-Mail-Adresse als Empfänger versandt werden können. Anzahl der E-Mails mit derselben Empfänger-E-Mail (0 schaltet die Funktion ab).
+<br /><br /></td>
+                                     </tr>
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap"> $recipient_duration	</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	Angabe des Zeitraums in ganzen Stunden (1, 2, 5, 10, 20, 300).
+<br /><br /></td>
+                                     </tr>
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap"> $ip_address_count	</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	Als dritte Möglichkeit können Sie die Anzahl der gesendeten E-Mails an die IP-Adresse des Benutzers koppeln. Analog den beiden oberen Möglichkeiten können Sie die Anzahl der E-Mails und die Dauer festlegen. Anzahl der E-Mails mit der selben IP-Adresse (0 schaltet die Funktion ab).
+<br /><br /></td>
+                                     </tr>
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap"> $ip_address_duration	</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	Angabe der Dauer in ganzen Stunden (1, 2, 5, 10, 20, 300).
+<br /><br /></td>
+                                     </tr>
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap"> 						</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	Wenn eine dieser drei Sicherheits-Funktion aktiviert wird, wird auch gleichzeitig die Log-Funktion eingeschaltet. Stellen Sie deshalb sicher, dass der Ordner 'log' und die Log-Datei ('log/logfile.txt') Schreibrechte besitzen (chmod 777).
+<br /><br /></td>
+                                     </tr>
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap"> $show_limit_errors	</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	Hat ein Benutzer die maximale Anzahl seiner erlaubten E-Mails erreicht, können Sie ihm eine Fehlermeldung anzeigen. 
+<br /><br /></td>
+                                     </tr>
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap"> $log_messages	</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	Hier schalten Sie die Logging-Funktion der E-Mails ein beziehungsweise aus. Wollen Sie die Funktion nutzen, stellen Stellen Sie deshalb sicher, dass der Ordner 'log' und die Log-Datei ('log/logfile.txt') Schreibrechte besitzen (chmod 777).
+<br /><br /></td>
+                                     </tr>
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap"> $text_wrap	</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	Diese Variable enthält die Anzahl der Zeichen, nach der die Zeilen in der E-Mail umbrochen werden. Wird kein Wert angegeben, wird kein Zeilenumbruch eingefügt.
+<br /><br /></td>
+                                     </tr>
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap"> $show_error_messages	</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	Bei Auslieferung des Scripts ist diese Variable standardmäßig auf 'yes' gesetzt. Das hat zur Folge, dass Sie bei der Konfiguration des Scripts Fehlermeldungen und Hinweise zur Einrichtung des Scripts erhalten. Sobald aber das System funktioniert können Sie die Ausgabe der Meldungen abschalten. So verwehren Sie allzu neugierigen Besuchern den Einblick in das System.
+<br /><br /></td>
+                                     </tr>
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap"> $path['logfile']	</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	Diese Variable enthält den Pfad zur Log-Datei für die E-Mail-Mail-Nachrichten.
+<br /><br /></td>
+                                     </tr>
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap"> $path['templates']	</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	Diese Variable enthält den Pfad zu den Template-Dateien (HTML und Mail). Der Pfad kann relativ (./templates/ oder templates/) und absolut (z.B.: /usr/local/etc/httpd/.../tell_a_friend/templates/ oder /kunden/homepages/.../.../htdocs/tell_a_friend/templates/) angegeben werden (immer mit Slash am Ende).
+<br /><br /></td>
+                                     </tr>
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap"> $file['default_html']	</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	In dieser Variable ist das Template gespeichert, dass beim Aufruf für das Layout verwendet wird.
+<br /><br /></td>
+                                     </tr>
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap"> $file['default_mail']	</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	Diese Variable enthält den Namen des Mail-Templates, wenn im HTML-Formular kein Mail-Template definiert wurde. 
+<br /><br /></td>
+                                     </tr>
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap"> $add_text	</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	Sie können weitere Werte, Text, Variablen oder andere Inhalte an dieser Stelle festlegen. Diese Inhalte können Sie dann mit Hilfe von entsprechenden Markierungen in geschweiften Klammern in die Templates übertragen. 
+<br /><br /></td>
+                                     </tr>
+</table>
+<p> Wenn Sie eigene Werte in der Variable $add_text hinzufügen folgen Sie bitte dem Muster, dass durch die beiden Beispieleinträge deutlich gemacht wurde. 
+</p>
+<pre> 
+   $add_text = array(
+ 
+                       'txt_additional' =&gt; 'Additional',
+                       'txt_more'       =&gt; 'More'
+ 
+                     ); 
+ 
+</pre>
+<p> Der erste Teil eines Eintrags (z.B.: txt_additional) stellt den Namen der Platzhalter im Template dar. Wenn Sie also den Wert von txt_additional im Template anzeigen möchten, tragen Sie dort den Namen umschlossen von geschweiften Klammern ein - {txt_additional}. Der Name darf keine Leer- oder Sonderzeichen enthalten. Erlaubt ist nur der Unterstrich.
+ 
+ 
+ 
+</p>
+<p align="right"><a href="#top"> Nach oben
+</a></p></div>
+<div class="chapter"><a name="html"></a>
+<h4>Anpassung des HTML-Templates - templates/form.tpl.html</h4>
+<p> Die Template-Datei ist eine simple HTML-Datei und kann auch dementsprechend editiert werden. Mit Hilfe von HTML und CSS können Sie das Layout Ihren Wünschen anpassen.
+</p>
+<p> Sollten Sie für die Anpassung WYSIWYG-Editoren wie Dreamweaver, Frontpage oder NetObjects Fusion verwenden, achten Sie bitte darauf, dass die Software keine eigenmächtigen Veränderungen vornimmt. Die Funktionsweise des Scripts könnte sonst beeinträchtigt werden.
+</p>
+<p> Im Unterverzeichnis 'examples' befinden sich weitere HTML-Formulare. Diese sollen für Sie als Beispiele für die Erweiterung und Anpassung Ihres eigenen Formulars dienen. So haben Sie bei Benutzung des Templates 'alternative_form.tpl.html' die Möglichkeit, den Benutzer auswählen zu lassen, ob er die gerade besuchte Seite oder die Startseite empfehlen möchte. Und im Template 'advanced_form.tpl.html' sind Beispiele zur Verwendung von Checkboxen, Radio-Buttons und Auswahlmenüs aufgeführt.
+</p>
+<p> In den Templates befinden sich Markierungen/Platzhalter in geschweiften Klammern, wie zum Beispiel {txt_script_name}. Die werden beim Aufruf des Scripts durch die entsprechenden Wörter ersetzt. Diese Wörter, also den Text für das Script, finden Sie in der Datei 'languages/language.de.inc.php'. Natürlich können Sie diese Wörter auch ändern oder an eine andere Position innerhalb des Templates verschieben. Es spricht auch nichts dagegen, wenn Sie die Markierungen durch richtige Wörter ersetzen. Ebenso können Sie die Sprachdatei nach dem vorgegebenen Muster erweitern.
+</p>
+<p> Folgende Platzhalter sind nicht in der Sprachdatei enthalten und dürfen auch nicht verändert oder in der Sprachdatei durch eigene Definitionen angepasst werden:
+</p>
+<pre> 
+ {check_referer}
+ {check_server}
+ {message}
+ {redirect}
+ {referer}
+ {server}
+ {link}
+ {fields}
+ 
+</pre>
+<p> 
+ 
+ 
+</p>
+<h4>Dateien einbinden (include)</h4>
+<p> Sie haben die Möglichkeit, Dateien direkt in das HTML-Template einzubinden. Dabei spielt es keine Rolle, ob Sie PHP-, HTML-, Text- oder andere Dateien einbinden.
+</p>
+<p> Beispiel:
+</p>
+<p class="code"> &lt;INCLUDE FILENAME=&quot;header.php&quot;&gt;
+</p>
+<p> Das Script ersetzt diese Zeile automatisch mit dem Inhalt der Datei "header.php". Bitte beachten Sie auch, dass relative Pfadangaben (../ etc.) im Hauptverzeichnis des Scripts (selbe Ebene wie index.php) beginnen müssen.
+</p>
+<p> Wenn Sie absolute Pfadangaben verwenden (Pfadangabe startet mit Schrägstrich), beginnt der Pfad standardmäßig im Hauptverzeichnis des Webordners.
+</p>
+<p> Beispiel:
+</p>
+<pre>
+ /logs/
+ /images/
+ /layout/
+ /layout/header.php
+ /form_mail/
+ /form_mail/templates/
+ /form_mail/templates/form.tpl.html
+ /form_mail/index.php
+ 
+</pre>
+<p> Angenommen, Sie möchten die Datei "header.php" innerhalb der Datei "form.tpl.html" einbinden. Wenn Sie einen relativen Pfad angeben, müssen Sie auf er Ebene der "index.php" starten.
+</p>
+<p class="code"> &lt;INCLUDE FILENAME=&quot;../layout/header.php&quot;&gt;
+</p>
+<p> Wenn Sie eine absoluten Pfad angeben möchten, geben Sie einfach den Pfad zur "header.php" ausgehend vom Hauptverzeichnis an:
+</p>
+<p class="code"> &lt;INCLUDE FILENAME=&quot;/layout/header.php&quot;&gt;
+</p>
+<p> Beispiele zu diesem Thema finden Sie auch im Verzeichnis "templates/examples_includes/".
+</p>
+<p> Formularfelder
+</p>
+<p> Bitte beachten Sie, dass die Namen Ihrer Formularfelder nicht mit "multiple_" beginnen dürfen, es sei denn, Sie möchten die Empfehlungs-E-Mail an mehrere Empfänger gleichzeitig versenden. Mehr dazu im Abschnitt "Mehrere Empfänger".
+</p>
+<p> Zu jedem Formularfeldnamen im Template existiert automatisch ein gleichnamiger Platzhalter, der sowohl im HTML als auch im Mail-Template verwendet werden kann. Dadurch ist sichergestellt, dass die Daten bei einer Fehlermeldung im Formular wieder erscheinen. Der Platzhalter hat die gleiche Bezeichnung, wie das Formularfeld. 
+</p>
+<p> Das Script nutzt drei vordefinierte Formularfelder:
+</p>
+<p class="code"> &lt;input type=&quot;hidden&quot; name=&quot;link&quot; value=&quot;{redirect}&quot; /&gt;
+</p>
+<p> Dieses Feld erscheint in einem Template auch als Radio-Button.
+</p>
+<pre>
+ &lt;input type=&quot;text&quot; name=&quot;sender_email&quot; value=&quot;{sender_email}&quot; /&gt;
+ &lt;input type=&quot;text&quot; name=&quot;friend_email&quot; value=&quot;{friend_email}&quot; /&gt;
+</pre>
+<p> Sie können das Formular beliebig um weitere Felder erweitern. Bitte achten Sie darauf, dass die Feldnamen und Platzhalter keine Leer- oder Sonderzeichen enthalten.
+ 
+ 
+</p>
+<h4>Mehrere Empfänger</h4>
+<p> Sie können eine Seite gleichzeitig an beliebig viele verschiedene Empfänger empfehlen lassen. Im einfachsten Fall fügen Sie dazu die gewünschte Anzahl an Formularfelder für die E-Mails in Ihr Formular ein.
+</p>
+<p> Die Feldnamen können frei gewählt werden (nur Buchstaben, Zahlen und Unterstrich), müssen aber immer mit dem Wort "multiple_" beginnen (auf den Unterstrich achten) und mit einer fortlaufenden Nummer "_1" enden (auf den Unterstrich achten).
+</p>
+<p> Ein Beispiel finden Sie im Verzeichnis "templates/examples/". Das HTML-Template "multiple_recipients_form.tpl.html" ist für den Versand an mehrere Empfänger vorbereitet. Dazu gehört auch die Datei "multiple_recipients_mail.tpl.txt".
+</p>
+<p> Angenommen Sie möchten vier potenzielle Empfänger einrichten und als Feldnamen hätten Sie gern "empfaenger_email", dann müssten Ihre Formularfelder wie folgt lauten:
+</p>
+<p> multiple_empfaenger_email_1
+ multiple_empfaenger_email_2
+ multiple_empfaenger_email_3
+ multiple_empfaenger_email_4
+ text	Die fertigen Formularfelder für das HTML-Template sähen dann so aus:
+</p>
+<pre>
+ &lt;input type=&quot;text&quot; name=&quot;multiple_empfaenger_email_1&quot; value=&quot;{multiple_empfaenger_email_1}&quot; /&gt;
+ &lt;input type=&quot;text&quot; name=&quot;multiple_empfaenger_email_2&quot; value=&quot;{multiple_empfaenger_email_2}&quot; /&gt;
+ &lt;input type=&quot;text&quot; name=&quot;multiple_empfaenger_email_3&quot; value=&quot;{multiple_empfaenger_email_3}&quot; /&gt;
+ &lt;input type=&quot;text&quot; name=&quot;multiple_empfaenger_email_4&quot; value=&quot;{multiple_empfaenger_email_4}&quot; /&gt;
+</pre>
+<p> Die Feldnamen sind - wie gehabt - automatisch die Platzhalter für die Werte (value="...").
+</p>
+<p> Sie können jedem Empfänger beliebig viele weitere Formularfelder zuordnen. Alle Felder, die mit "multiple_" beginnen, werden anhand der fortlaufenden Nummer jeweils dem entsprechenden Empfänger zugeordnet. Folgende Felder werden zum Beispiel alle dem 4. Empfänger zugeordnet:
+</p>
+<pre>
+ &lt;input type=&quot;text&quot; name=&quot;multiple_vorname_4&quot; value=&quot;{multiple_vorname_2}&quot; /&gt;
+ &lt;input type=&quot;text&quot; name=&quot;multiple_nachname_4&quot; value=&quot;{multiple_nachname_4}&quot; /&gt;
+ &lt;input type=&quot;text&quot; name=&quot;multiple_empfaenger_email_4&quot; value=&quot;{multiple_empfaenger_email_4}&quot; /&gt;
+</pre>
+<p> Das Script verwendet für alle Empfänger dasselbe E-Mail-Template. Die Platzhalter im Template heißen genauso wie die Feldnamen im Formular. Die Zahlen am Ende werden jedoch durch ein Fragezeichen ersetzt. Das Script erkennt diese Platzhalter und ersetzt Sie automatisch mit den Werten des richtigen Empfängers. Beispiel:
+</p>
+<p class="code"> To: &quot;{multiple_vorname_?} {multiple_nachname_?}&quot; &lt;{multiple_email_?}&gt;
+</p>
+<p> Das Script verwendet dasselbe E-Mail-Template für alle Empfänger. Alle normalen Formularfelder erscheinen in jeder E-Mail.
+ 
+ 
+</p>
+<h4>Pflichtfelder</h4>
+<p> Alle Formularfelder lassen sich als Pflichtfelder definieren. Das Formular wird erst dann abgeschickt, wenn alle Pflichtfelder ausgefüllt sind. Tragen Sie dazu die Formularfeldnamen der gewünschten Formularfelder in folgendes Hidden-Formularfeld im Template:
+</p>
+<p class="code"> &lt;input type=&quot;hidden&quot; name=&quot;required_fields&quot; value=&quot;&quot; /&gt;
+</p>
+<p> Beispiel:
+</p>
+<p class="code"> &lt;input type=&quot;hidden&quot; name=&quot;required_fields&quot; value=&quot;lastname, sender_email, friend_email&quot; /&gt;
+ 
+ 
+</p>
+<h4>E-Mail-Syntax</h4>
+<p> Ähnlich wie bei den Pflichtfeldern können Sie bestimmen, welche Felder auf einen korrekten E-Mail-Syntax geprüft werden sollen.
+</p>
+<p class="code"> &lt;input type=&quot;hidden&quot; name=&quot;email_fields&quot; value=&quot;&quot; /&gt;
+</p>
+<p> Beispiel:
+</p>
+<p class="code"> &lt;input type=&quot;hidden&quot; name=&quot;email_fields&quot; value=&quot;sender_email&quot; /&gt;
+ 
+ 
+ 
+</p>
+<h4>Erweiterte Fehlermeldungen</h4>
+<p> Standardmäßig werden Hinweismeldungen bei nicht ausgefüllten Pflichtfeldern oder bei falscher Schreibweise von E-Mails oberhalb des Formulars angezeigt.
+</p>
+<p> Sie haben die Möglichkeit, Fehlermeldungen direkt neben, ober- oder unterhalb des entsprechenden Formularfeldes anzuzeigen. Außerdem können Sie auch die Bezeichnung des Feldes nach Ihren Wünschen verändern. Auf folgendem Screenshot sehen Sie, dass die Pflichtfelder Nachname, E-Mail-Adresse und Betreff nicht ausgefüllt wurden.
+</p>
+<p> <img src="./images/error_messages_de.gif" border="0" alt="" />
+</p>
+<p> Folgende drei Platzhalter stehen Ihnen dafür zur Verfügung:
+</p>
+<pre> {required:feldname=Fehlertext}
+ {syntax:feldname=Fehlertext}
+ {error:feldname=Normaltext||=Fehlertext}
+ 
+ 
+</pre>
+<h4>{required:feldname=Fehlertext}</h4>
+<p> Wenn Sie das Feld "nachname" haben und als Pflichtfeld definieren, dann können Sie folgenden Platzhalter für die Fehlermeldung schreiben:
+</p>
+<p class="code"> {required:nachname=Bitte geben Sie Ihren Nachnamen an.}
+</p>
+<p> Wenn das Feld nicht ausgefüllt wurde, wird der Platzhalter durch die in ihm enthaltene Fehlermeldung ersetzt:
+</p>
+<p> Bitte geben Sie Ihren Nachnamen an.
+</p>
+<p> Sie können den Fehlertext auch formatieren, am besten mit CSS:
+</p>
+<p class="code"> {required:nachname=&lt;span style=&quot;font-weight:bold;color:#FF0000;&quot;&gt;Bitte geben Sie Ihren Nachnamen an.&lt;/span&gt;}
+</p>
+<p> Der Fehlertext erscheint nun fett gedruckt und in roter Schriftfarbe:
+</p>
+<p> <span style="font-weight:bold;color:#FF0000;">Bitte geben Sie Ihren Nachnamen an.</span>
+ 
+ 
+</p>
+<h4>{syntax:feldname=Fehlertext}</h4>
+<p> Wenn Sie das Feld "email" haben und als E-Mail-Syntaxfeld definieren, dann können Sie folgenden Platzhalter für die Fehlermeldung schreiben:
+</p>
+<p class="code"> {syntax:email=Bitte geben Sie eine gültige E-Mail-Adresse an.}
+</p>
+<p> Wenn das Feld nicht korrekt ausgefüllt wurde, wird der Platzhalter durch die in ihm enthaltene Fehlermeldung ersetzt:
+</p>
+<p> Bitte geben Sie eine gültige E-Mail-Adresse an.
+</p>
+<p> Sie können den Fehlertext auch formatieren, am besten mit CSS:
+</p>
+<p class="code"> {required:email=&lt;span style=&quot;font-weight:bold;color:#FF0000;&quot;&gt; Bitte geben Sie eine gültige E-Mail-Adresse an.&lt;/span&gt;}
+</p>
+<p> Der Fehlertext erscheint nun fett gedruckt und in roter Schriftfarbe:
+</p>
+<p> <span style="font-weight:bold;color:#FF0000;"> Bitte geben Sie eine gültige E-Mail-Adresse an.</span>
+ 
+ 
+ 
+</p>
+<h4>{error:feldname=Normaltext||=Fehlertext}</h4>
+<p> Diesen Platzhalter können Sie verwenden, wenn Sie bei einem Fehler einen bestehenden Text einfach nur verändern oder austauschen möchten. Wenn Sie zum Beispiel das Feld "betreff“ als Pflichtfeld definiert haben, dann möchten Sie es sicherlich beim Aufruf des Formulars ganz normal darstellen. Und wenn der Benutzer das Feld nicht ausfüllt, möchten Sie die Schriftfarbe ändern lassen. Der Platzhalter sähe dann wie folgt aus:
+</p>
+<p class="code"> {error:betreff=Betreff||=&lt;span style=&quot;color:#FF0000;&quot;&gt;Betreff&lt;/span&gt;}
+</p>
+<p> Ohne Fehler wird der erste Teil, also der Teil vor den beiden senkrechten Strichen (Pipes) angezeigt. Tritt ein Fehler auf, wird der zweite Teil, also der Teil nach den Pipes angezeigt.
+</p>
+<p> Zum besseren Verständnis können Sie sich das Beispiel im Verzeichnis "templates/examples_error_messages/" ansehen und daran üben.
+ 
+ 
+</p>
+<h4>Weiterleitung auf Verweisseite oder Danke-Seite</h4>
+<p> Nachdem das Formular abgeschickt wurde können Sie den Besucher zurück auf die Seite führen, von der er gekommen ist oder Sie können ihn auf eine vordefinierte Seite weiterleiten. Diese Seite können Sie im folgenden Feld definieren:
+</p>
+<p class="code"> &lt;input type=&quot;hidden&quot; name=&quot;redirect&quot; value=&quot;{redirect}&quot; /&gt;
+</p>
+<p> Wenn Sie den Besucher auf eine bestimmte Seite weiterleiten möchten, ersetzen Sie einfach den Platzhalter {redirect} durch den URL zur Danke-Seite.
+</p>
+<p> Beispiel:
+</p>
+<p class="code"> &lt;input type=&quot;hidden&quot; name=&quot;redirect&quot; value=&quot;http://www.example.com/danke.html&quot; /&gt;
+</p>
+<p> Achten Sie bitte darauf, dass Sie den kompletten URL inklusive http:// und Ihrer Domain (z.B.: http://www.example.com/) angeben. 
+</p>
+<p> Für den Fall, dass Sie weder auf die Verweisseite noch auf eine Danke-Seite weiterleiten möchten, können Sie eine Bestätigungsseite anzeigen. Diese Seite kann zudem noch alle Formulardaten anzeigen. Ändern Sie dazu folgendes Feld:
+</p>
+<p class="code"> &lt;input type=&quot;hidden&quot; name=&quot;redirect&quot; value=&quot;{redirect}&quot; /&gt;
+</p>
+<p> Zu folgendem Feld:
+</p>
+<p class="code"> &lt;input type=&quot;hidden&quot; name=&quot;static&quot; value=&quot;{redirect}&quot; /&gt;
+</p>
+<p> Der Name des Feldes ändert sich einfach von "redirect" zu "static".
+ 
+ 
+ 
+</p>
+<h4>Festlegen des HTML-Templates</h4>
+<p> Sie können das Script direkt oder von einem bereits fertigen Formular in einer statischen HTML-Seite aus aufrufen. Im letzteren Fall müssen Sie das HTML-Template in folgendem Feld festlegen:
+</p>
+<p class="code"> &lt;input type=&quot;hidden&quot; name=&quot;html_template&quot; value=&quot;&quot; /&gt;
+</p>
+<p> Beispiel:
+</p>
+<p class="code"> &lt;input type=&quot;hidden&quot; name=&quot;html_template&quot; value=&quot;form.tpl.html&quot; /&gt;
+ 
+ 
+ 
+</p>
+<h4>Festlegen des Mail-Templates</h4>
+<p> Wie auch schon bei den HTML-Templates enthält das Unterverzeichnis 'examples' Beispiel-Templates. Das Template 'html_mail.tpl.txt' wurde als HTML-E-Mail vorkonfiguriert, so dass die E-Mail als HTML-E-Mail verschickt wird. Sie können die E-Mail wie eine normale HTML-Seite formatieren.
+</p>
+<p> Die Mail-Templates definieren Sie auf folgende Weise:
+</p>
+<p class="code"> &lt;input type=&quot;hidden&quot; name=&quot;mail_template&quot; value=&quot;&quot; /&gt;
+</p>
+<p> Dazu können Sie ein einziges Mail-Template,
+</p>
+<p class="code"> &lt;input type=&quot;hidden&quot; name=&quot;mail_template&quot; value=&quot;mail.tpl.txt&quot; /&gt;
+</p>
+<p> oder mehrere Mail-Templates definieren. Durch die mehrfachen Mail-Templates können Sie mehrere E-Mails mit verschieden formatierten Inhalten versenden.
+</p>
+<p class="code"> &lt;input type=&quot;hidden&quot; name=&quot;mail_template&quot; value=&quot;mail.tpl.txt, mail2.tpl.txt&quot; /&gt;
+ 
+ 
+</p>
+<h4>Auswahl-Menüs (Select-Menüs)</h4>
+<p> Das Script kann Auswahl-Felder verarbeiten, die wie folgt aufgebaut sind:
+</p>
+<pre>
+ &lt;select name=&quot;&quot; size=&quot;&quot;&gt;
+   &lt;option value=&quot;&quot;&gt;&lt;/option&gt;
+   &lt;option value=&quot;&quot;&gt;&lt;/option&gt;
+ &lt;/select&gt;
+ 
+</pre>
+<p> Allerdings können noch keine Multiple Select-Felder verarbeitet werden.
+</p>
+<p> Wie Sie sicher stellen, wie der vom Benutzer ausgewählte Wert bei einem erneuten Aufruf im Formular ausgewählt bleibt, zeigt das folgende Beispiel:
+</p>
+<pre>
+ &lt;select name=&quot;Anrede&quot; size=&quot;2&quot;&gt;
+   &lt;option value=&quot;Herr&quot; {select:Anrede=Herr}&gt;&lt;/option&gt;
+   &lt;option value=&quot;Frau&quot; {select:Anrede=Frau}&gt;&lt;/option&gt;
+ &lt;/select&gt;
+</pre>
+<p> Der Platzhalter {select:Anrede=Herr} hat folgende Eigenschaften. An erster Stelle steht die Art des Formularfeldes. In diesem Fall ist es ein Select-Menü (= select). Danach folgt ein Doppelpunkt (:). An zweiter Stelle muss der Name des Formularfeldes erscheinen. Das ist im obigen Beispiel "Anrede". Danach folgt ein Gleichheitszeichen (=). An letzter Stelle muss der Wert des Options-Feldes stehen (also der Wert aus "value=").
+</p>
+<p> Um den ausgewählten Wert im Mail-Template erscheinen zu lassen, tragen Sie bitte im Mail-Template den Namen des Feldes, eingeschlossen durch geschweifte Klammern - { } - ein.
+ 
+ 
+</p>
+<h4>Checkboxen</h4>
+<p> Das Script kann Checkbox-Felder verarbeiten, die wie folgt aufgebaut sind:
+</p>
+<p class="code"> &lt;input type=&quot;checkbox&quot; name=“&quot; value=&quot;&quot; /&gt;
+</p>
+<p> Wie Sie sicher stellen, wie der vom Benutzer ausgewählte Wert bei einem erneuten Aufruf im Formular ausgewählt bleibt, zeigt das folgende Beispiel:
+</p>
+<p class="code"> &lt;input type=&quot;Checkbox&quot; name=&quot;Newsletter&quot; value=&quot;Yes&quot; {checkbox:Newsletter=Yes} /&gt;
+</p>
+<p> Der Platzhalter {checkbox:Newsletter=Yes} hat folgende Eigenschaften. An erster Stelle steht die Art des Formularfeldes. In diesem Fall ist es eine Checkbox (= checkbox). Danach folgt ein Doppelpunkt (:). An zweiter Stelle muss der Name des Formularfeldes erscheinen. Das ist im obigen Beispiel "Newsletter". Danach folgt ein Gleichheitszeichen (=). An letzter Stelle muss der Wert des Feldes stehen (also der Wert aus "value=").
+</p>
+<p> Um den ausgewählten Wert im Mail-Template erscheinen zu lassen, tragen Sie bitte im Mail-Template den Namen des Feldes, eingeschlossen durch geschweifte Klammern - { } - ein. 
+ 
+ 
+</p>
+<h4>Radio-Buttons</h4>
+<p> Das Script kann Radio-Button-Felder verarbeiten, die wie folgt aufgebaut sind:
+</p>
+<p class="code"> &lt;input type=&quot;radio&quot; name=&quot;&quot; value=&quot;&quot; /&gt;
+</p>
+<p> Wie Sie sicher stellen, wie der vom Benutzer ausgewählte Wert bei einem erneuten Aufruf im Formular ausgewählt bleibt, zeigt das folgende Beispiel:
+</p>
+<p class="code"> &lt;input type=&quot;radio&quot; name=&quot;Anrede&quot; value=&quot;Herr&quot; {radiobutton:Anrede=Herr} /&gt;
+</p>
+<p> Der Platzhalter {radiobutton:Anrede=Herr} hat folgende Eigenschaften. An erster Stelle steht die Art des Formularfeldes. In diesem Fall ist es ein Radio-Button(= radiobutton). Danach folgt ein Doppelpunkt (:). An zweiter Stelle muss der Name des Formularfeldes erscheinen. Das ist im obigen Beispiel "Anrede". Danach folgt ein Gleichheitszeichen (=). An letzter Stelle muss der Wert des Feldes stehen (also der Wert aus "value=").
+</p>
+<p> Um den ausgewählten Wert im Mail-Template erscheinen zu lassen, tragen Sie bitte im Mail-Template den Namen des Feldes, eingeschlossen durch geschweifte Klammern - { } - ein.
+</p>
+<p> Beispiele zu den eben beschriebenen Funktionen finden Sie im Template "advanced_form.tpl.html".
+ 
+ 
+ 
+ 
+</p>
+<p align="right"><a href="#top"> Nach oben
+</a></p></div>
+<div class="chapter"><a name="mail"></a>
+<h4>Anpassung des E-Mail Templates - templates/mail.tpl.txt</h4>
+<p> Im oberen Bereich des E-Mail-Templates befinden sich die Daten für den Kopfbereich der E-Mail. Dazu gehören:
+</p>
+<ul>
+  <li> Empfänger - To:
+</li>
+  <li> Absender - From:
+</li>
+  <li> Betreff - Subject:
+</li>
+  <li> Kopie - Cc:
+</li>
+  <li> Blind-Kopie Bcc: 
+</li>
+</ul>
+<p> Sie können den Empfänger der E-Mail im Template festlegen. Der Empfänger ist dabei normalerweise derjenige, der im Formular eingetragen wurde:
+</p>
+<p class="code"> To: {friend_email}
+</p>
+<p> Zusätzlich können Sie weitere Empfänger per Kopie und Blind-Kopie hinzufügen:
+</p>
+<pre>
+ CC: name@anderer-server.de
+ CC: chef@firma.de
+ BCC: secret@firma.de
+</pre>
+<p> Als Absender können Sie eine feste Adresse eingeben oder die Daten aus dem Formular verwenden:
+</p>
+<p class="code"> From: {sender_email}
+</p>
+<p> Sie können auch den Namen des Absenders einfügen. Dabei steht der Name vor der E-Mail-Adresse, die sich in spitzen Klammern befindet.
+</p>
+<p class="code"> From: {firstname} {lastname} &lt;{sender_email}&gt;
+</p>
+<p> Nach dem Kopfbereich folgt eine Leerzeile. Danach folgt der Inhalt der E-Mail. Sie können hier den Text nach Belieben ändern. Wenn Sie eigene Formularfelder hinzufügen, müssen die Namen der Felder im E-Mail-Template in geschweiften Klammern stehen - {formularfeldname}. Andernfalls werden die Inhalte aus dem Formular nicht in die E-Mail geschrieben.
+ 
+ 
+</p>
+<h4>Gesamte Formulardaten gebündelt anzeigen</h4>
+<p> Sie haben die Möglichkeit, alle Formulardaten gebündelt mit einem Platzhalter in der E-Mail anzuzeigen. Tragen Sie dazu den Platzhalter 
+</p>
+<p class="code"> {all_content}
+</p>
+<p> in das E-Mail-Template ein.
+</p>
+<p> Für die HTML-E-Mail können Sie folgenden Platzhalter verwenden. Dadurch werden die Werte automatisch in einer Tabelle angezeigt.
+</p>
+<p class="code"> {all_content_table}
+ 
+ 
+ 
+</p>
+<h4>Umgebungsvariablen, Server-Datum und -Uhrzeit</h4>
+<p> Die folgenden Umgebungsvariablen stellt das Script zur Verfügung. Um die Variablen in der E-Mail sichtbar zu machen, können folgende Platzhalter benutzt werden.
+</p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap"> {env_user_agent}	</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	Browser-Software des Anwenders (Mozilla, Netscape, Opera, Internet Explorer).
+<br /><br /></td>
+                                     </tr>
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap"> {env_remote_address}	</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	IP-Adresse des Anwenders.
+<br /><br /></td>
+                                     </tr>
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap"> {env_remote_host}	</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	Hostname des Anwenders.
+<br /><br /></td>
+                                     </tr>
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap"> {env_year}	</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	Jahr
+<br /><br /></td>
+                                     </tr>
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap"> {env_month}	</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	Monat
+<br /><br /></td>
+                                     </tr>
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap"> {env_day}		</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	Tag
+<br /><br /></td>
+                                     </tr>
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap"> {env_hour}	</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	Stunde 
+<br /><br /></td>
+                                     </tr>
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap"> {env_minute}	</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	Minuten
+<br /><br /></td>
+                                     </tr>
+<tr valign="top">
+                                       <td class="code" nowrap="nowrap"> {env_second})	</td>
+                                       <td>&nbsp;&nbsp;&nbsp;</td>
+                                       <td>	Sekunden
+ 
+ 
+ 
+<br /><br /></td>
+                                     </tr>
+</table>
+<p align="right"><a href="#top"> Nach oben
+</a></p></div>
+<div class="chapter"><a name="logs"></a>
+<h4>Die Log-Datei - log/logfile.txt</h4>
+<p> Das Verzeichnis 'log' und die Datei logfile.txt müssen das Dateiattribut 777 besitzen (chmod 777) - also schreibbar sein.
+ 
+ 
+ 
+</p>
+<p align="right"><a href="#top"> Nach oben
+</a></p></div>
+<div class="chapter"><a name="support"></a>
+<h4>Support</h4>
+<p> Antworten auf Ihre Fragen und Lösungen für Probleme mit dem Script finden Sie in unserem  <a href="http://www.stadtaus.com/">Support-Forum</a>. 
+ 
+ 
+</p>
+<p align="right"><a href="#top"> Nach oben
+</a></p></div>
+<div class="chapter"><a name="license"></a>
+<h4>Informationen zur Script-Lizenz</h4>
+<p> Das Tell-A-Friend-Script können Sie kostenlos nutzen. Wenn Sie das Script ohne Hinweis und Link auf STADTAUS.com betreiben möchten, können Sie die Vollversion online erwerben.
+</p>
+<p> Nach dem Kauf erhalten Sie zusätzlich zur Script-Lizenz kostenlose Updates und Upgrades.
+</p>
+<ul>
+  <li> Sie können die Script-Lizenz an Dritte verkaufen, auch als professioneller Reseller.
+</li>
+  <li> Den Preis können Sie dabei selbst bestimmen.
+</li>
+  <li> Die Script-Lizenz gilt für eine Domain.
+</li>
+</ul>
+<p> Kontakt:
+</p>
+<p> <a href="http://www.stadtaus.com/">http://www.stadtaus.com/</a><br />
+ <a href="http://www.stadtaus.com/forum/">http://www.stadtaus.com/forum/</a>
+</p>
+<p> Weitere Scripts auf <a href="http://www.stadtaus.com/">STADTAUS.com</a>:
+</p>
+<ul>
+  <li> Schedule Organizer - Online Terminplaner
+</li>
+  <li> Apotheken-Notdienstkalender
+</li>
+  <li> Website-Empfehlung (Tell-A-Friend)
+</li>
+  <li> Galerie-Script
+</li>
+  <li> Form-Mail-Script
+</li>
+  <li> Download Center Lite
+</li>
+  <li> Gästebuch-Script
+</li>
+  <li> Voting-Script (Abstimmungs- und Umfrage-Script)
+</li>
+  <li> Counter und Referer Script
+</li>
+  <li> CSV-To-MySQL
+</li>
+  <li> Google-Tool
+</li>
+</ul>
+<p> Besuchen Sie unser neuestes Projekt <a href="http://www.metacollection.com/">MetaCollection</a>. Die Seite ist ein Verzeichnis deutscher und internationaler Script-Archive.
+</p>
+<p> Wir möchten Ihnen ein weiteres Projekt vorstellen - <a href="http://www.greenpolarbear.com/">Green Polar Bear</a>. Die Website  beinhaltet eine ständig wachsende Anzahl an "Royalty Free" Fotos.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+</p>
+<p align="right"><a href="#top"> Nach oben
+</a></p></div>
+
+ 
+
+  </body>
+  
+</html>

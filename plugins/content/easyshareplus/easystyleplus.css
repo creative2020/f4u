@@ -1,0 +1,19 @@
+
+@charset "utf-8";
+/* Social Media */
+div.shareit a {display:inline-block;width:auto;outline:none;}
+div.shareit a img {border:none ! important;}
+/* div.shareit a:hover {background:none ! important;} */
+div.shareit a:link {color: #000000 ! important; text-decoration: none ! important; }
+div.shareit a:active {color: #000000 ! important; text-decoration: none ! important; }
+div.shareit a:visited {color: #000000  ! important; text-decoration: none ! important; }
+div.shareit a:hover {color: #000000  ! important; text-decoration: none  ! important; }
+.clr {clear:both;}
+	
+
+.contentpane .shareit {display: none ! important;}
+.s-box .shareit {display: none ! important;}
+.component-body .shareit {display: none ! important;}
+
+
+div.emailbut a:hover {background:none ! important;}

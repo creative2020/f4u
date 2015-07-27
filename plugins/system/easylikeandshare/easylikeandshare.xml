@@ -1,0 +1,1682 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension 
+	version="2.5" 
+	type="plugin" 
+	group="system"
+	method="upgrade">
+	<name>System - Easy Like and Share</name>
+	<author>Bryan Keller</author>
+	<creationDate>October 2011</creationDate>
+	<copyright>Copyright (C) 2011 Techheads IT Consulting. All rights reserved.</copyright>
+	<authorEmail>admin@sanantoniocomputerrepair.net</authorEmail>
+	<authorUrl>http://www.free-extensions.com</authorUrl>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<version>2.99</version>
+	<description>EASYSHARE_DESC</description>
+	<files>
+		<filename plugin="easylikeandshare">easylikeandshare.php</filename>
+		<folder>easyshareassets/</folder>
+    		<filename>index.html</filename>
+    		<filename>easystyle.css</filename>
+    		<filename>efshorturleasylike.php</filename>
+		<folder>taf/</folder>
+	</files>
+	<languages>
+		<language tag="en-GB">en-GB.plg_system_easylikeandshare.ini</language>
+	</languages>
+
+<config>
+  <fields name="params">
+	<fieldset name="basic">
+
+		<field type="spacer" name="spacer199" label="OURINFO" />
+
+		<field type="spacer" name="spacer1s2" label="SETTINGS2" />
+
+		<field type="spacer" name="spacer1ssb" label="SETTINGSSIDEBAR" />
+
+    <field name="sidebar" type="radio" default="yes" label="Enable Icons on Side" description="Enable the Display of the Icons along the side of the screen.">
+       <option value="yes">Yes</option>
+       <option value="no">No</option>
+    </field>
+	<field name="padbottom" type="text" default="10" label="Margin from Bottom" description="Choose the Amount of space in pixels from the bottom of the screen." size="5" />
+	<field name="padrorl" type="text" default="2" label="Margin L/R or Center" description="Choose the Amount of space in pixels from the left or the right or away from the center of the screen." size="5" />
+    <field name="positioning" type="radio" default="fixed" label="Style Fixed or Floating" description="Would you like the icons 'fixed' to a position on the screen or floating ie. the icons move along with the screen when scrolling.">
+       <option value="fixed">Fixed</option>
+       <option value="absolute">Floating</option>
+    </field>
+    <field name="startpos" type="radio" default="center" label="Starting Position of Icons" description="Choose where the starting position of the icons originates from, either the center of the screen or the side of the screen.">
+       <option value="center">Center of Screen</option>
+       <option value="side">Side of Screen</option>
+    </field>
+    <field name="orientation" type="radio" default="right" label="Orientation of Icons" description="Orientation of Icons. Right or Left side of screen.">
+       <option value="right">Right</option>
+       <option value="left">Left</option>
+    </field>
+    <field name="toporbot" type="radio" default="top" label="Placement of Icons." description="Placement of Icons. Either the Top of the Screen or the Bottom of the Screen.">
+       <option value="top">Top</option>
+       <option value="bottom">Bottom</option>
+    </field>
+    <field name="backdrop" type="radio" default="no" label="Display A Backdrop" description="Would you like to display a backdrop for your buttons.">
+       <option value="yes">Yes</option>
+       <option value="no">No</option>
+    </field>
+    <field name="backdropcol" type="text" default="" label="Backdrop Color" description="The color of the backdrop in hex ex. #000000" />
+    <field name="bkdropheight" type="text" default="" label="Backdrop Height" description="The Height of the backdrop in pixels." />
+    <field name="bkdropwidth" type="text" default="" label="Backdrop Width" description="The Width of the backdrop in pixels." />
+	<field name="bkdropborder" type="list" default="none" label="Border Style" description="Choose your border style.">
+		<option value="none">None</option>
+		<option value="dotted">Dotted</option>
+		<option value="dashed">Dashed</option>
+		<option value="solid">Solid</option>
+		<option value="double">Double</option>
+		<option value="groove">Groove</option>
+		<option value="ridge">Ridge</option>
+		<option value="inset">Inset</option>
+		<option value="outset">Outset</option>
+	</field>
+	<field name="bkdropborwidth" type="list" default="2" label="Border Width" description="Choose your border width.">
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+		<option value="6">6</option>
+		<option value="7">7</option>
+		<option value="8">8</option>
+		<option value="9">9</option>
+	</field>
+	<field name="bkdropcss" type="text" default="" label="Backdrop Style CSS" description="The CSS Style of the backdrop." size="50" />
+
+    <field name="css2" type="text" size="75" default="" label="CSS style" description="Insert a style for the buttons." />
+
+        	<field name="shortener" type="list" default="" label="Shortener service" description="You can select a shortener URL service. To work properly, a PHP option 'allow_url_fopen' must be enabled. You must enable PHP curl for Google shortener service." >
+           	<option value="">None</option>
+			<option value="bitly">bit.ly</option>
+			<option value="jmp">j.mp</option>
+		</field>
+
+        	<field name="shortLogin" type="text" default="" label="Login" description="Username for the shortener URL service."/>
+
+        	<field name="shortApiKey" type="text" default="" size="80" label="API key" description="An API key for the shortener URL service."/>
+
+
+		<field type="spacer" name="spacerog" label="OPENGRAPHSETTINGS" />
+
+		<field type="spacer" name="spacerog1" label="OPENGRAPH" />
+
+        	<field name="ogtags" type="radio" default="no" label="Enable og Tags" description="Generate og Tags for your content.">
+          		<option value="yes">Yes</option>
+          		<option value="no">No</option>
+        	</field>
+
+        	<field name="ogtype" type="list" default="website" label="Select og Type" description="Choose an og Type. Embed Code {ogtype}yourtype{/ogtype}">
+          		<option value="activity">activity</option>
+          		<option value="sport">sport</option>
+          		<option value="bar">bar</option>
+          		<option value="company">company</option>
+          		<option value="cafe">cafe</option>
+          		<option value="hotel">hotel</option>
+          		<option value="restaurant">restaurant</option>
+          		<option value="cause">cause</option>
+          		<option value="sports_league">sports_league</option>
+          		<option value="sports_team">sports_team</option>
+          		<option value="band">band</option>
+          		<option value="government">government</option>
+          		<option value="non_profit">non_profit</option>
+          		<option value="school">school</option>
+          		<option value="university">university</option>
+          		<option value="actor">actor</option>
+          		<option value="athlete">athlete</option>
+          		<option value="author">author</option>
+          		<option value="director">director</option>
+          		<option value="musician">musician</option>
+          		<option value="politician">politician</option>
+          		<option value="public_figure">public_figure</option>
+          		<option value="city">city</option>
+          		<option value="country">country</option>
+          		<option value="landmark">landmark</option>
+          		<option value="state_province">state_province</option>
+          		<option value="album">album</option>
+          		<option value="book">book</option>
+          		<option value="drink">drink</option>
+          		<option value="food">food</option>
+          		<option value="game">game</option>
+          		<option value="product">product</option>
+          		<option value="song">song</option>
+          		<option value="movie">movie</option>
+          		<option value="tv_show">tv_show</option>
+          		<option value="blog">blog</option>
+          		<option value="website">website</option>
+          		<option value="article">article</option>
+        	</field>
+
+		<field name="ogtitle" type="text" label="Select og Title" description="This title will be used on all pages or leave blank to auto populate page title. Embed Code {ogtitle}yourtitle{/ogtitle}" default="" size="50"/>
+
+		<field name="ogdescription" type="text" label="Select og Desc" description="This description will be used on all pages or leave blank to auto populate description. Embed Code {ogdesc}yourdesc{/ogdesc}" default="" size="50"/>
+
+		<field name="ogurl" type="text" label="Select og URL" description="This URL will be used on all pages or leave blank to auto populate URL. Embed Code {ogurl}http://www.yoururl.com{/ogurl}" default="" size="50"/>
+
+		<field name="ogimage" type="text" label="Select og Image" description="This image URL will be used on all pages or leave blank to auto populate. Embed Code {ogimage}http://www.image.com/img.jpg{/ogimage}." default="" size="50"/>
+
+		<field type="spacer" name="spacerog1loc" label="OGLOCATION2" />
+
+		<field name="oglatitude" type="text" label="Select og Latitude" description="This latitude will be used on all pages. Embed Code {latitude}latitude{/latitude}" default="" size="50"/>
+
+		<field name="oglongitude" type="text" label="Select og Longitude" description="This longitude will be used on all pages. Embed Code {longitude}longitude{/longitude}" default="" size="50"/>
+
+		<field name="ogstreet-address" type="text" label="Select og Street Address" description="Embed Code {street-address}street address{/street-address}" default="" size="50"/>
+
+		<field name="oglocality" type="text" label="Select og Locality" description="Typically City. Embed Code {locality}locality{/locality}" default="" size="50"/>
+
+		<field name="ogregion" type="text" label="Select og Region" description="Typically State. Embed Code {region}region{/region}" default="" size="50"/>
+
+		<field name="ogpostal-code" type="text" label="Select og Postal Code" description="Typically ZipCode. Embed Code {postal-code}postal code{/postal-code}" default="" size="50"/>
+
+		<field name="ogcountry-name" type="text" label="Select og Country Name" description="Embed Code {country-name}country name{/country-name}" default="" size="50"/>
+
+		<field type="spacer" name="og1contactinfo" label="OGCONTACTINFO2" />
+
+		<field name="ogemail" type="text" label="Select og Email" description="Embed Code {email}email{/email}" default="" size="50"/>
+
+		<field name="ogphone_number" type="text" label="Select og Phone Number" description="Embed Code {phone_number}country name{/phone_number}" default="" size="50"/>
+
+		<field name="ogfax_number" type="text" label="Select og Fax Number" description="Embed Code {fax_number}country name{/fax_number}" default="" size="50"/>
+
+
+		<field type="spacer" name="spacerogsup" label="OGSUPPORTED" />
+
+		<field name="ogdeterminer" type="text" label="Select og Determiner" description="The word before the object's title. ie. 'the, an, a' This determiner will be used on all pages or use Embed Code {ogdeterminer}the/a/an/etc..{/ogdeterminer}." default="" size="50"/>
+
+		<field name="ogaudio" type="text" label="Select og Audio" description="This audio URL will be used on all pages or use Embed Code {ogaudio}http://www.audio.com/audio.wav{/ogaudio}." default="" size="50"/>
+
+		<field name="oglocale" type="text" label="Select og Locale" description="This locale will be used on all pages or use Embed Code {oglocale}en_US{/oglocale}." default="" size="50"/>
+
+		<field name="ogsitename" type="text" label="Select og Site Name" description="This Site Name will be used on all pages or use Embed code {ogsitename}yoursitename{/ogsitename}." default="" size="50"/>
+
+		<field name="ogvideo" type="text" label="Select og Video" description="This video URL will be used on all pages or use Embed Code {ogvideo}http://www.yourvideo.com/video.avi{/ogvideo}." default="" size="50"/>
+
+		<field type="spacer" name="spacerogmoreimg" label="OGMOREIMAGE" />
+
+		<field name="ogimagesecure" type="text" label="Select og Image Secure" description="If using https: // This will be used on all pages or use Embed Code {ogimagesecure}https://yourimage.com/ogp.jpg{/ogimagesecure}." default="" size="50"/>
+
+		<field name="ogimagetype" type="list" label="Select og Image Type" description="Image MIME type. This will be used on all pages or use Embed Code {ogimagetype}image/jpeg{/ogimagetype}." default="none" >
+		<option value="none">-</option>
+		<option value="image/gif">GIF</option>
+		<option value="image/jpeg">JPEG</option>
+		<option value="image/png">PNG</option>
+		<option value="image/svg+xml">SVG</option>
+		<option value="image/tiff">TIFF</option>
+		<option value="image/vnd.microsoft.icon">ICO</option>
+	</field>
+
+
+		<field name="ogimagewidth" type="text" label="Select og Image Width" description="Image width in pixels. This will be used on all pages or use Embed Code {ogimagewidth}640{/ogimagewidth}." default="" size="50"/>
+
+		<field name="ogimageheight" type="text" label="Select og Image Height" description="Image height in pixels. This will be used on all pages or use Embed Code {ogimageheight}480{/ogimageheight}." default="" size="50"/>
+
+		<field type="spacer" name="spacerogmorevid" label="OGMOREVIDEO" />
+
+		<field name="ogvideosecure" type="text" label="Select og Video Secure" description="If using https: // This will be used on all pages or use Embed Code {ogvideosecure}https://yourvideo.com/ogp.avi{/ogvideosecure}." default="" size="50"/>
+
+		<field name="ogvideotype" type="list" label="Select og Video Type" description="Video MIME type. This will be used on all pages or use Embed Code {ogvideotype}video/mpeg{/ogvideotype}." default="none">
+		<option value="none">-</option>
+		<option value="video/mpeg">MPEG</option>
+		<option value="video/mp4">MP4</option>
+		<option value="video/ogg">Ogg Theora</option>
+		<option value="video/quicktime">QuickTime</option>
+		<option value="video/webm">WebM</option>
+		<option value="video/x-matroska">Matroska</option>
+		<option value="video/x-me-wmv">WMV</option>
+		<option value="video/x-flv">FLV</option>
+	</field>
+
+		<field name="ogvideowidth" type="text" label="Select og Video Width" description="Video width in pixels. This will be used on all pages or use Embed Code {ogvideowidth}640{/ogvideowidth}." default="" size="50"/>
+
+		<field name="ogvideoheight" type="text" label="Select og Video Height" description="Video height in pixels. This will be used on all pages or use Embed Code {ogvideoheight}480{/ogvideoheight}." default="" size="50"/>
+
+		<field type="spacer" name="spacerogmoreaudio" label="OGMOREAUDIO" />
+
+		<field name="ogaudiosecure" type="text" label="Select og Audio Secure" description="If using https: // This will be used on all pages or use Embed Code {ogaudiosecure}https://youraudio.com/ogp.wav{/ogaudiosecure}." default="" size="50"/>
+
+		<field name="ogaudiotype" type="list" label="Select og Audio Type" description="Audio MIME type. This will be used on all pages or use Embed Code {ogaudiotype}audio/vnd.wav{/ogaudiotype}." default="none">
+		<option value="none">-</option>
+		<option value="audio/basic">mulaw</option>
+		<option value="audio/L24: 24bit">Linear PCM</option>
+		<option value="audio/mp4">MP4</option>
+		<option value="audio/mpeg">MP3</option>
+		<option value="audio/ogg">Ogg Vorbis</option>
+		<option value="audio/vorbis">Vorbis</option>
+		<option value="audio/x-ms-wma">WMA</option>
+		<option value="audio/vnd-rn-realaudio">RealAudio</option>
+		<option value="audio/vnd.wave">WAV</option>
+		<option value="audio/webm">WebM</option>
+	</field>
+
+		<field type="spacer" name="spacer2" label="SOCIALLIKEANDSHARE" />
+
+		<field type="spacer" name="spacer3" label="GOOGLEPLUSONE2" />
+
+		<field name="go1" type="radio" label="Display Google +1" default="yes">
+			<option value="yes">Yes</option>
+			<option value="no">No</option>
+		</field>
+
+    		<field name="sbo1" type="list" default="1" label="Force Button Order" description="Set the Button Display Order 1-20">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+			<option value="16">16</option>
+			<option value="17">17</option>
+			<option value="18">18</option>
+			<option value="19">19</option>
+			<option value="20">20</option>
+		</field>
+
+		<field name="gojembed" type="list" label="Load Javascript?" description="If you disable this you must include the Google Javascript Library Reference yourself." default="everytime">
+			<option value="once">Load Once</option>
+			<option value="everytime">Load Every Time</option>
+			<option value="never">Never Load</option>
+		</field>
+
+    		<field name="gocss" type="text" default="" label="CSS style" description="Insert a style for the button" size="75" />
+
+    		<field name="goheight" type="text" default="" label="Button Height" description="Set the Button height in pixels." size="5" />
+
+    		<field name="gowidth" type="text" default="" label="Button Width" description="Set the Button width in pixels." size="5" />
+
+    		<field name="gooutput" type="radio" default="standard" label="Output type" description="Output type (Standard HTML, HTML5)">
+			<option value="standard">Standard</option>
+			<option value="html5">HTML5</option>
+		</field>
+
+		<field name="sizegoogle" type="radio" default="tall" label="Google +1 Layout Style" description="Determines the size and shape of the Google +1 Button.">
+			<option value="small">PLG_GO_SMALL</option>
+			<option value="medium">PLG_GO_MEDIUM</option>
+			<option value="standard">PLG_GO_STANDARD</option>
+			<option value="tall">PLG_GO_TALL</option>
+		</field>
+
+		<field name="annotation" type="list" default="bubble" label="Annotation" description="Annotation: None, Inline, or Bubble.">
+			<option value="none">None</option>	
+			<option value="inline">Inline</option>
+			<option value="bubble">Bubble</option>
+		</field>
+
+		<field name="golang" type="list" default="en-US" label="Language" description="Language Selection">
+			<option value="ar">Arabic</option>
+			<option value="bg">Bulgarian</option>
+			<option value="ca">Catalan</option>
+			<option value="zh-CN">Chinese (Simplified)</option>
+			<option value="zh-TW">Chinese (Traditional)</option>
+			<option value="hr">Croatian</option>
+			<option value="cs">Czech</option>
+			<option value="da">Danish</option>
+			<option value="nl">Dutch</option>
+			<option value="en-GB">English (UK)</option>
+			<option value="en-US">English (US)</option>
+			<option value="et">Estonian</option>
+			<option value="fil">Filipino</option>
+			<option value="fi">Finnish</option>
+			<option value="fr">French</option>
+			<option value="de">German</option>
+			<option value="el">Greek</option>
+			<option value="iw">Hebrew</option>
+			<option value="hi">Hindi</option>
+			<option value="hu">Hungarian</option>
+			<option value="id">Indonesian</option>
+			<option value="it">Italian</option>
+			<option value="ja">Japanese</option>
+			<option value="ko">Korean</option>
+			<option value="lv">Latvian</option>
+			<option value="lt">Lithuanian</option>
+			<option value="ms">Malay</option>
+			<option value="no">Norwegian</option>
+			<option value="fa">Persian</option>
+			<option value="pl">Polish</option>
+			<option value="pt-BR">Portuguese (Brazil)</option>
+			<option value="pt-PT">Portuguese (Portugal)</option>
+			<option value="ro">Romanian</option>
+			<option value="ru">Russian</option>
+			<option value="sr">Serbian</option>
+			<option value="sk">Slovak</option>
+			<option value="sl">Slovenian</option>
+			<option value="es">Spanish</option>
+			<option value="es-419">Spanish (Latin America)</option>
+			<option value="sv">Swedish</option>
+			<option value="th">Thai</option>
+			<option value="tr">Turkish</option>
+			<option value="uk">Ukrainian</option>
+			<option value="vi">Vietnamese</option>
+		</field>
+
+		<field name="gourl" type="text" default="" label="Custom URL" description="If you wish to use a specific URL place it here." size="50" />
+
+
+		<field type="spacer" name="spacer4" label="FACEBOOK2" />
+
+		<field name="fb1" type="radio" label="Facebook Like" description="Enable Facebook like button?" default="yes">
+			<option value="yes">Yes</option>
+			<option value="no">No</option>
+		</field>
+
+    		<field name="sbo2" type="list" default="2" label="Force Button Order" description="Set the Button Display Order 1-20">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+			<option value="16">16</option>
+			<option value="17">17</option>
+			<option value="18">18</option>
+			<option value="19">19</option>
+			<option value="20">20</option>
+		</field>
+
+		<field name="fbjembed" type="list" label="Load Javascript" description="Include the Javascript (If no you must include it yourself)." default="everytime">
+			<option value="once">Load Once</option>
+			<option value="everytime">Load Every Time</option>
+			<option value="never">Never Load</option>
+		</field>
+
+    		<field name="fbcss" type="text" default="" label="CSS style" description="Insert a style for the button" size="75" />
+
+		<field name="fbheight" type="text" default="" label="Height" description="Choose the height in pixels." size="5" />
+
+		<field name="fbwidth" type="text" default="" label="Width" description="Choose the width in pixels." size="5" />
+
+        	<field name="fboutput" type="radio" default="iframe" label="Output" description="How button is rendered">
+          		<option value="iframe">IFrame</option>
+          		<option value="xfbml">XFBML</option>
+			<option value="html5">HTML5</option>
+        	</field>
+
+		<field name="fbappid" type="text" label="App ID (for JavaScript SDK)" description="If you plan to use XFBML then you have to install the JavaScript SDK which requires getting an App ID. Put your App ID here." default="" size="50"/>
+
+        	<field name="fbsendbutton" type="radio" default="yes" label="Send Button" description="Display the send button allow users to send content to their friends. (Only works if using XFBML)">
+          		<option value="yes">Yes</option>
+          		<option value="no">No</option>
+		</field>
+
+        	<field name="fbautourl" type="radio" default="yes" label="Auto URL Discovery" description="Automatically use current page URL">
+          		<option value="yes">Yes</option>
+          		<option value="no">No</option>
+		</field>
+
+		<field name="fburl" type="text" label="Facebook URL" description="URL to your facebook page." default="" size="50"/>
+
+		<field name="fblayout" type="radio" default="box_count" label="Layout Style" description="Choose your Facebook Layout Style.">
+			<option value="standard">PLG_FB_STANDARD</option>
+			<option value="button_count">PLG_FB_BUTTON_COUNT</option>
+			<option value="box_count">PLG_FB_BOX_COUNT</option>
+		</field>
+
+		<field name="fbfaces" type="radio" label="Show Faces" description="Standard Layout Only" default="yes">
+			<option value="yes">Yes</option>
+			<option value="no">No</option>
+		</field>
+
+		<field name="fbverb" type="list" default="like" label="Verb to Display" description="Verb to display on the button.">
+			<option value="like">like</option>
+			<option value="recommend">recommend</option>
+		</field>
+
+        <field name="fbfont" type="list" default="" label="Font" description="Font to use">
+          <option value=""></option>
+          <option value="arial">arial</option>
+          <option value="lucida grande">lucida grande</option>
+          <option value="segoe ui">segoe ui</option>
+          <option value="tahoma">tahoma</option>
+          <option value="trebuchet ms">trebuchet ms</option>
+          <option value="verdana">verdana</option>
+        </field>
+
+		<field name="fbcolor" type="list" default="light" label="Color Scheme" description="The Color Scheme for the like button.">
+			<option value="light">light</option>
+			<option value="dark">dark</option>
+		</field>
+
+		<field name="fblocale" type="list" default="en_US" label="Language" description="Language Selection">
+	<option value="af_ZA">Afrikaans</option>
+	<option value="ar_AR">Arabic</option>
+	<option value="az_AZ">Azerbaijani</option>
+	<option value="be_BY">Belarusian</option>
+	<option value="bg_BG">Bulgarian</option>
+	<option value="bn_IN">Bengali</option>
+	<option value="bs_BA">Bosnian</option>
+	<option value="ca_ES">Catalan</option>
+	<option value="cs_CZ">Czech</option>
+	<option value="cy_GB">Welsh</option>
+	<option value="da_DK">Danish</option>
+	<option value="de_DE">German</option>
+	<option value="el_GR">Greek</option>
+	<option value="en_GB">English (UK)</option>
+	<option value="en_PI">English (Pirate)</option>
+	<option value="en_UD">English (Upside Down)</option>
+	<option value="en_US">English (US)</option>
+	<option value="eo_EO">Esperanto</option>
+	<option value="es_ES">Spanish (Spain)</option>
+	<option value="es_LA">Spanish</option>
+	<option value="et_EE">Estonian</option>
+	<option value="eu_ES">Basque</option>
+	<option value="fa_IR">Persian</option>
+	<option value="fb_LT">Leet Speak</option>
+	<option value="fi_FI">Finnish</option>
+	<option value="fo_FO">Faroese</option>
+	<option value="fr_CA">French (Canada)</option>
+	<option value="fr_FR">French (France)</option>
+	<option value="fy_NL">Frisian</option>
+	<option value="ga_IE">Irish</option>
+	<option value="gl_ES">Galician</option>
+	<option value="he_IL">Hebrew</option>
+	<option value="hi_IN">Hindi</option>
+	<option value="hr_HR">Croatian</option>
+	<option value="hu_HU">Hungarian</option>
+	<option value="hy_AM">Armenian</option>
+	<option value="id_ID">Indonesian</option>
+	<option value="is_IS">Icelandic</option>
+	<option value="it_IT">Italian</option>
+	<option value="ja_JP">Japanese</option>
+	<option value="ka_GE">Georgian</option>
+	<option value="km_KH">Khmer</option>
+	<option value="ko_KR">Korean</option>
+	<option value="ku_TR">Kurdish</option>
+	<option value="la_VA">Latin</option>
+	<option value="lt_LT">Lithuanian</option>
+	<option value="lv_LV">Latvian</option>
+	<option value="mk_MK">Macedonian</option>
+	<option value="ml_IN">Malayalam</option>
+	<option value="ms_MY">Malay</option>
+	<option value="nb_NO">Norwegian (bokmal)</option>
+	<option value="ne_NP">Nepali</option>
+	<option value="nl_NL">Dutch</option>
+	<option value="nn_NO">Norwegian (nynorsk)</option>
+	<option value="pa_IN">Punjabi</option>
+	<option value="pl_PL">Polish</option>
+	<option value="ps_AF">Pashto</option>
+	<option value="pt_BR">Portuguese (Brazil)</option>
+	<option value="pt_PT">Portuguese (Portugal)</option>
+	<option value="ro_RO">Romanian</option>
+	<option value="ru_RU">Russian</option>
+	<option value="sk_SK">Slovak</option>
+	<option value="sl_SI">Slovenian</option>
+	<option value="sq_AL">Albanian</option>
+	<option value="sr_RS">Serbian</option>
+	<option value="sv_SE">Swedish</option>
+	<option value="sw_KE">Swahili</option>
+	<option value="ta_IN">Tamil</option>
+	<option value="te_IN">Telugu</option>
+	<option value="th_TH">Thai</option>
+	<option value="tl_PH">Filipino</option>
+	<option value="tr_TR">Turkish</option>
+	<option value="uk_UA">Ukrainian</option>
+	<option value="vi_VN">Vietnamese</option>
+	<option value="zh_CN">Simplified Chinese (China)</option>
+	<option value="zh_HK">Traditional Chinese (Hong Kong)</option>
+	<option value="zh_TW">Traditional Chinese (Taiwan)</option>
+		</field>
+
+
+
+		<field type="spacer" name="spacer5" label="LINKEDIN2" />
+
+		<field name="li1" type="radio" label="Linkedin Share" description="Enable Linkedin Share button?" default="yes">
+			<option value="yes">Yes</option>
+			<option value="no">No</option>
+		</field>
+
+    		<field name="sbo3" type="list" default="3" label="Force Button Order" description="Set the Button Display Order 1-20">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+			<option value="16">16</option>
+			<option value="17">17</option>
+			<option value="18">18</option>
+			<option value="19">19</option>
+			<option value="20">20</option>
+		</field>
+
+    		<field name="licss" type="text" default="" label="CSS style" description="Insert a style for the button" size="75" />
+
+    		<field name="liheight" type="text" default="" label="Button Height" description="Set the Button height in pixels." size="5" />
+
+    		<field name="liwidth" type="text" default="" label="Button Width" description="Set the Button width in pixels." size="5" />
+
+		<field name="lilayout" type="radio" default="vertical" label="Layout Style" description="Choose your Linkedin Share Layout Style.">
+			<option value="horizontal">PLG_LI_HORIZONTAL</option>
+			<option value="vertical">PLG_LI_VERTICAL</option>
+			<option value="no_count">PLG_LI_NO_COUNT</option>
+		</field>
+
+		<field name="liurl" type="text" default="" label="Custom URL" description="If you wish to use a specific URL place it here." size="50" />
+
+
+
+		<field type="spacer" name="spacer6" label="TWEETMEME2" />
+
+		<field name="tm1" type="radio" label="TweetMeme Share" description="Enable TweetMeme Share button?" default="yes">
+			<option value="yes">Yes</option>
+			<option value="no">No</option>
+		</field>
+
+    		<field name="sbo4" type="list" default="4" label="Force Button Order" description="Set the Button Display Order 1-20">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+			<option value="16">16</option>
+			<option value="17">17</option>
+			<option value="18">18</option>
+			<option value="19">19</option>
+			<option value="20">20</option>
+		</field>
+
+    		<field name="tmcss" type="text" default="" label="CSS style" description="Insert a style for the button" size="75" />
+
+    		<field name="tmheight" type="text" default="" label="Button Height" description="Set the Button height in pixels." size="5" />
+
+    		<field name="tmwidth" type="text" default="" label="Button Width" description="Set the Button width in pixels." size="5" />
+
+		<field name="tmlayout" type="radio" default="standard" label="Layout Style" description="Choose your TweetMeme Share Layout Style.">
+			<option value="compact">PLG_TM_COMPACT</option>
+			<option value="standard">PLG_TM_STANDARD</option>
+		</field>
+
+		<field name="tmurl" type="text" default="" label="Custom URL" description="If you wish to use a specific URL place it here." size="50" />
+
+
+
+		<field type="spacer" name="spacer7" label="TWITTER2" />
+
+		<field name="tw1" type="radio" label="Twitter Share" description="Enable Twitter Share Button?" default="yes">
+			<option value="yes">Yes</option>
+			<option value="no">No</option>
+		</field>
+
+		<field name="tws" type="radio" label="Use URL Shortener" default="no">
+			<option value="yes">Yes</option>
+			<option value="no">No</option>
+		</field>
+
+    		<field name="sbo5" type="list" default="5" label="Force Button Order" description="Set the Button Display Order 1-20">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+			<option value="16">16</option>
+			<option value="17">17</option>
+			<option value="18">18</option>
+			<option value="19">19</option>
+			<option value="20">20</option>
+		</field>
+
+		<field name="twjembed" type="list" label="Load Javascript" description="Include the Javascript (If no you must include it yourself)." default="everytime">
+			<option value="once">Load Once</option>
+			<option value="everytime">Load Every Time</option>
+			<option value="never">Never Load</option>
+		</field>
+
+    		<field name="twcss" type="text" default="" label="CSS style" size="75" description="Insert a style for the button" />
+
+    		<field name="twlang" type="list" default="en" label="Language" description="Choose a Language">
+			<option value="en">English</option>
+			<option value="fr">French</option>
+			<option value="de">German</option>
+			<option value="it">Italian</option>
+			<option value="es">Spanish</option>
+			<option value="ko">Korean</option>
+			<option value="ja">Japanese</option>
+		</field>
+
+    		<field name="twheight" type="text" default="" label="Button Height" description="Set the Button height in pixels." size="5" />
+
+    		<field name="twwidth" type="text" default="" label="Button Width" description="Set the Button width in pixels." size="5" />
+
+		<field name="twlayout" type="radio" default="vertical" label="Layout Style" description="Choose your Twitter Share Layout Style.">
+			<option value="horizontal">PLG_TW_HORIZONTAL</option>
+			<option value="vertical">PLG_TW_VERTICAL</option>
+			<option value="no_count">PLG_TW_NO_COUNT</option>
+		</field>
+
+    		<field name="twlarge" type="list" default="small" label="Large Button" description="Display as Large Button">
+			<option value="small">No</option>
+			<option value="large">Yes</option>
+		</field>
+
+		<field name="twvia" type="text" label="Tweet Via @username" description="The twitter username that this tweet originated from." default="" size="50" />
+
+		<field name="twhashtag" type="text" label="Put a related #hashtag here." description="This is how people will find your tweets when they search. Choose a good #hashtag." default="" size="50" />
+
+		<field name="twuser" type="text" label="Recommend to follow" description="Recommend a Twitter account for users to follow after they share content from your website." default="" size="50" />
+
+		<field name="twurl" type="text" default="" label="Custom URL" description="If you wish to use a specific URL place it here." size="50" />
+
+		<field name="twtitle" type="text" default="" label="Custom Title" description="If you wish to use a specific Title place it here." size="50" />
+
+
+		<field type="spacer" name="spacer7btf" label="TWITTERFOLLOW2" />
+
+		<field name="tf1" type="radio" label="Twitter Follow" description="Enable Twitter Follow Button?" default="yes">
+			<option value="yes">Yes</option>
+			<option value="no">No</option>
+		</field>
+
+    		<field name="sbo6" type="list" default="6" label="Force Button Order" description="Set the button display order 1-20">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+			<option value="16">16</option>
+			<option value="17">17</option>
+			<option value="18">18</option>
+			<option value="19">19</option>
+			<option value="20">20</option>
+		</field>
+
+		<field name="tfjembed" type="list" label="Load Javascript" description="Include the Javascript (If no you must include it yourself)." default="everytime">
+			<option value="once">Load Once</option>
+			<option value="everytime">Load Every Time</option>
+			<option value="never">Never Load</option>
+		</field>
+
+    		<field name="tfcss" type="text" default="" label="CSS style" size="75" description="Insert a style for the button" />
+
+    		<field name="tflang" type="list" default="en" label="Language" description="Choose a Language">
+			<option value="en">English</option>
+			<option value="fr">French</option>
+			<option value="de">German</option>
+			<option value="it">Italian</option>
+			<option value="es">Spanish</option>
+			<option value="ko">Korean</option>
+			<option value="ja">Japanese</option>
+		</field>
+
+    		<field name="tfheight" type="text" default="" label="Button Height" description="Set the Button height in pixels." size="5" />
+
+    		<field name="tfwidth" type="text" default="" label="Button Width" description="Set the Button width in pixels." size="5" />
+
+		<field name="tflayout" type="radio" default="standard" label="Layout Style" description="Choose your Twitter Share Layout Style.">
+			<option value="standard">PLG_TF_STANDARD</option>
+			<option value="show_name">PLG_TF_SHOWNAME</option>
+			<option value="large_standard">PLG_TF_LARGESTANDARD</option>
+			<option value="large_show_name">PLG_TF_LARGESHOWNAME</option>
+		</field>
+
+		<field name="tfuser" type="text" label="Your Twitter username" description="The twitter username that you would like people to follow you on." default="" size="50" />
+
+
+		<field type="spacer" name="spacer8" label="DIGG2" />
+
+		<field name="di1" type="radio" label="Digg Share" description="Enable Digg Share Button?" default="yes">
+			<option value="yes">Yes</option>
+			<option value="no">No</option>
+		</field>
+
+    		<field name="sbo7" type="list" default="7" label="Force Button Order" description="Set the Button Display Order 1-20">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+			<option value="16">16</option>
+			<option value="17">17</option>
+			<option value="18">18</option>
+			<option value="19">19</option>
+			<option value="20">20</option>
+		</field>
+
+		<field name="dijembed" type="list" label="Load Javascript" description="Include the Javascript (If no you must include it yourself)." default="everytime">
+			<option value="once">Load Once</option>
+			<option value="everytime">Load Every Time</option>
+			<option value="never">Never Load</option>
+		</field>
+
+    		<field name="dicss" type="text" default="" label="CSS style" description="Insert a style for the button" size="75" />
+
+    		<field name="diheight" type="text" default="" label="Button Height" description="Set the Button height in pixels." size="5" />
+
+    		<field name="diwidth" type="text" default="" label="Button Width" description="Set the Button width in pixels." size="5" />
+
+		<field name="dilayout" type="radio" default="medium" label="Layout Style" description="Choose your Digg Share Layout Style.">
+			<option value="wide">PLG_DI_WIDE</option>
+			<option value="medium">PLG_DI_MEDIUM</option>
+			<option value="compact">PLG_DI_COMPACT</option>
+		</field>
+
+		<field name="diurl" type="text" default="" label="Custom URL" description="If you wish to use a specific URL place it here." size="50" />
+
+		<field name="dititle" type="text" default="" label="Custom Title" description="If you wish to use a specific Title place it here." size="50" />
+
+
+
+		<field type="spacer" name="spacer9" label="STUMBLEUPON2" />
+
+		<field name="st1" type="radio" label="Stumbleupon Share" description="Enable Stumbleupon Share Button?" default="yes">
+			<option value="yes">Yes</option>
+			<option value="no">No</option>
+		</field>
+
+    		<field name="sbo8" type="list" default="8" label="Force Button Order" description="Set the Button Display Order 1-20">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+			<option value="16">16</option>
+			<option value="17">17</option>
+			<option value="18">18</option>
+			<option value="19">19</option>
+			<option value="20">20</option>
+		</field>
+  
+  		<field name="stcss" type="text" default="" label="CSS style" description="Insert a style for the button" size="75" />
+
+    		<field name="stheight" type="text" default="" label="Button Height" description="Set the Button height in pixels." size="5" />
+
+    		<field name="stwidth" type="text" default="" label="Button Width" description="Set the Button width in pixels." size="5" />
+
+		<field name="stlayout" type="radio" default="5" label="Layout Style" description="Choose your Stumbleupon Share Layout Style.">
+			<option value="1">PLG_ST_SIZE1</option>
+			<option value="2">PLG_ST_SIZE2</option>
+			<option value="3">PLG_ST_SIZE3</option>
+			<option value="5">PLG_ST_SIZE4</option>
+		</field>
+
+		<field name="sturl" type="text" default="" label="Custom URL" description="If you wish to use a specific URL place it here." size="50" />
+
+
+		<field type="spacer" name="spacer16" label="REDDIT2" />
+
+		<field name="re1" type="radio" label="Reddit Share" description="Enable Reddit Share Button?" default="yes">
+			<option value="yes">Yes</option>
+			<option value="no">No</option>
+		</field>
+
+    		<field name="sbo9" type="list" default="9" label="Force Button Order" description="Set the Button Display Order 1-20">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+			<option value="16">16</option>
+			<option value="17">17</option>
+			<option value="18">18</option>
+			<option value="19">19</option>
+			<option value="20">20</option>
+		</field>
+
+    		<field name="recss" type="text" default="" label="CSS style" description="Insert a style for the button" size="75" />
+
+    		<field name="reheight" type="text" default="" label="Button Height" description="Set the Button height in pixels." size="5" />
+
+    		<field name="rewidth" type="text" default="" label="Button Width" description="Set the Button width in pixels." size="5" />
+
+        <field name="retype" type="radio" default="button5" label="Reddit Share Style" description="Choose the style of button you wish to display.">
+          <option value="button1">PLG_RE_BUTTON1</option>
+          <option value="button2">PLG_RE_BUTTON2</option>
+          <option value="button3">PLG_RE_BUTTON3</option>
+          <option value="button4">PLG_RE_BUTTON4</option>
+          <option value="button5">PLG_RE_BUTTON5</option>
+          <option value="button6">PLG_RE_BUTTON6</option>
+        </field>
+
+		<field name="rebgcolor" type="text" default="" label="Background Color" description="This is for customizing the button. (Use a 3 digit color code ex: 00F)" size="25" />
+
+		<field name="rebordercol" type="text" default="" label="Border Color" description="This is for customizing the button.  (Use a 3 digit color code ex: 00F)" size="25" />
+
+		<field name="reurl" type="text" default="" label="Custom URL" description="If you wish to use a specific URL place it here." size="50" />
+
+		<field name="retitle" type="text" default="" label="Custom Title" description="If you wish to use a specific Title place it here." size="50" />
+
+
+		<field type="spacer" name="spacer16bpi" label="PINTERESTED2" />
+
+		<field name="pi1" type="radio" label="Pinterest" description="Enable Pinterest Share Button?" default="yes">
+			<option value="yes">Yes</option>
+			<option value="no">No</option>
+		</field>
+
+    		<field name="sbo10" type="list" default="10" label="Force Button Order" description="Set the button display order 1-20">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+			<option value="16">16</option>
+			<option value="17">17</option>
+			<option value="18">18</option>
+			<option value="19">19</option>
+			<option value="20">20</option>
+		</field>
+
+		<field name="pibtype" type="radio" label="Choose Button Type" description="Choose either the standard pin it button or the 'bookmarklet' button (bookmarklet loads images from page automatically)" default="standard">
+			<option value="standard">Standard</option>
+			<option value="bookmarklet">Bookmarklet</option>
+		</field>
+
+		<field name="pijembed" type="list" label="Load Javascript" description="Include the Javascript (Only enable once per page)." default="everytime">
+			<option value="once">Load Once</option>
+			<option value="everytime">Load Every Time</option>
+			<option value="never">Never Load</option>
+		</field>
+
+    		<field name="picss" type="text" default="" label="CSS style" description="Insert a style for the button" size="75" />
+
+    		<field name="piheight" type="text" default="" label="Button Height" description="Set the Button height in pixels." size="5" />
+
+    		<field name="piwidth" type="text" default="" label="Button Width" description="Set the Button width in pixels." size="5" />
+
+        <field name="pitype" type="radio" default="vertical" label="Pinterest Share Style" description="Choose the style of button you wish to display.">
+          <option value="horizontal">PLG_PIN_HORIZONTAL</option>
+          <option value="vertical">PLG_PIN_VERTICAL</option>
+          <option value="none">PLG_PIN_NOCOUNT</option>
+        </field>
+
+		<field name="piurl" type="text" default="" label="Custom URL" description="If you wish to use a specific URL place it here." size="50" />
+
+		<field name="piimage" type="text" default="" label="Image" description="If you wish to specify an image place the path here." size="50" />
+
+		<field name="pidescription" type="text" default="" label="Description" description="Place a description here if you wish." size="50" />
+
+
+
+		<field type="spacer" name="spacer16bbf" label="BUFFER2" />
+
+		<field name="bf1" type="radio" label="Buffer Share" description="Enable Buffer Share Button?" default="yes">
+			<option value="yes">Yes</option>
+			<option value="no">No</option>
+		</field>
+
+    		<field name="sbo11" type="list" default="11" label="Force Button Order" description="Set the button display order 1-20">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+			<option value="16">16</option>
+			<option value="17">17</option>
+			<option value="18">18</option>
+			<option value="19">19</option>
+			<option value="20">20</option>
+		</field>
+
+    		<field name="bfcss" type="text" default="" label="CSS style" size="75" description="Insert a style for the button" />
+
+    		<field name="bfheight" type="text" default="" label="Button Height" description="Set the Button height in pixels." size="5" />
+
+    		<field name="bfwidth" type="text" default="" label="Button Width" description="Set the Button width in pixels." size="5" />
+
+		<field name="bflayout" type="radio" default="vertical" label="Layout Style" description="Choose your Buffer Share Layout Style.">
+			<option value="vertical">PLG_BF_VERTICAL</option>
+			<option value="horizontal">PLG_BF_HORIZONTAL</option>
+			<option value="no_count">PLG_BF_NOCOUNT</option>
+		</field>
+
+		<field name="bftweet" type="text" default="" label="Text Tweet" description="Place the text that you would like to tweet or leave blank to use the page title." size="50" />
+
+		<field name="bfurl" type="text" default="" label="Custom URL" description="If you wish to use a specific URL place it here. Otherwise leave blank to the page url." size="50" />
+
+		<field name="bfuser" type="text" label="Twitter Username to Mention" description="The twitter username that you would like to mention." default="" size="50" />
+
+
+		<field type="spacer" name="spacer17xi" label="XING2" />
+		<field name="xi1" type="radio" label="Xing Share" description="Enable Xing Share Button?" default="yes">
+			<option value="yes">Yes</option>
+			<option value="no">No</option>
+		</field>
+
+    		<field name="sbo12" type="list" default="12" label="Force Button Order" description="Set the button display order 1-20">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+			<option value="16">16</option>
+			<option value="17">17</option>
+			<option value="18">18</option>
+			<option value="19">19</option>
+			<option value="20">20</option>
+		</field>
+
+    		<field name="xicss" type="text" default="" label="CSS style" size="75" description="Insert a style for the button" />
+
+    		<field name="xiheight" type="text" default="" label="Button Height" description="Set the Button height in pixels." size="5" />
+
+    		<field name="xiwidth" type="text" default="" label="Button Width" description="Set the Button width in pixels." size="5" />
+
+		<field name="xilayout" type="radio" default="top" label="Layout Style" description="Choose your Xing Share Layout Style.">
+			<option value="top">PLG_XI_TOP</option>
+			<option value="right">PLG_XI_RIGHT</option>
+			<option value="rectangle">PLG_XI_RECTANGLE</option>
+			<option value="small_square">PLG_XI_SMALLSQUARE</option>
+			<option value="square">PLG_XI_SQUARE</option>
+		</field>
+
+		<field name="xiurl" type="text" default="" label="Custom URL" description="If you wish to use a specific URL place it here. Otherwise leave blank to the page url." size="50" />
+
+    		<field name="xilang" type="list" default="en" label="Language" description="Choose a Language">
+			<option value="en">English</option>
+			<option value="de">German</option>
+		</field>
+
+
+		<field type="spacer" name="spacer16bgs1" label="GOOGLESHARE2" />
+
+		<field name="gs1" type="radio" label="Display Google Share" default="yes">
+			<option value="yes">Yes</option>
+			<option value="no">No</option>
+		</field>
+
+    		<field name="sbo13" type="list" default="13" label="Force Button Order" description="Set the button display order 1-20">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+			<option value="16">16</option>
+			<option value="17">17</option>
+			<option value="18">18</option>
+			<option value="19">19</option>
+			<option value="20">20</option>
+		</field>
+
+		<field name="gsjembed" type="list" label="Include Google Javascript?" description="If you disable this you must include the Google Javascript Library Reference yourself." default="everytime">
+			<option value="once">Load Once</option>
+			<option value="everytime">Load Every Time</option>
+			<option value="never">Never Load</option>
+		</field>
+
+    		<field name="gscss" type="text" default="" label="CSS style" description="Insert a style for the button" size="75" />
+
+    		<field name="gsheight" type="text" default="" label="Button Height" description="Set the Button height in pixels." size="5" />
+
+    		<field name="gswidth" type="text" default="" label="Button Width" description="Set the Button width in pixels." size="5" />
+
+    		<field name="gsoutput" type="radio" default="standard" label="Output type" description="Output type (Standard HTML, HTML5)">
+			<option value="standard">Standard</option>
+			<option value="html5">HTML5</option>
+		</field>
+
+		<field name="gs_annotation" type="radio" default="bubble" label="Google Share Layout Style" description="Determines the size and shape of the Google Share Button.">
+			<option value="none">PLG_GS_NONE</option>
+			<option value="bubble">PLG_GS_BUBBLE</option>
+			<option value="vertical-bubble">PLG_GS_VERTICALBUBBLE</option>
+			<option value="inline">PLG_GS_INLINE</option>
+		</field>
+
+		<field name="gs_size" type="list" default="medium" label="Button Size" description="Choose your button size: small, medium or large.">
+			<option value="small">Small</option>	
+			<option value="medium">Medium</option>
+			<option value="large">Large</option>
+		</field>
+
+		<field name="gslang" type="list" default="en-US" label="Language" description="Language Selection">
+			<option value="ar">Arabic</option>
+			<option value="bg">Bulgarian</option>
+			<option value="ca">Catalan</option>
+			<option value="zh-CN">Chinese (Simplified)</option>
+			<option value="zh-TW">Chinese (Traditional)</option>
+			<option value="hr">Croatian</option>
+			<option value="cs">Czech</option>
+			<option value="da">Danish</option>
+			<option value="nl">Dutch</option>
+			<option value="en-GB">English (UK)</option>
+			<option value="en-US">English (US)</option>
+			<option value="et">Estonian</option>
+			<option value="fil">Filipino</option>
+			<option value="fi">Finnish</option>
+			<option value="fr">French</option>
+			<option value="de">German</option>
+			<option value="el">Greek</option>
+			<option value="iw">Hebrew</option>
+			<option value="hi">Hindi</option>
+			<option value="hu">Hungarian</option>
+			<option value="id">Indonesian</option>
+			<option value="it">Italian</option>
+			<option value="ja">Japanese</option>
+			<option value="ko">Korean</option>
+			<option value="lv">Latvian</option>
+			<option value="lt">Lithuanian</option>
+			<option value="ms">Malay</option>
+			<option value="no">Norwegian</option>
+			<option value="fa">Persian</option>
+			<option value="pl">Polish</option>
+			<option value="pt-BR">Portuguese (Brazil)</option>
+			<option value="pt-PT">Portuguese (Portugal)</option>
+			<option value="ro">Romanian</option>
+			<option value="ru">Russian</option>
+			<option value="sr">Serbian</option>
+			<option value="sk">Slovak</option>
+			<option value="sl">Slovenian</option>
+			<option value="es">Spanish</option>
+			<option value="es-419">Spanish (Latin America)</option>
+			<option value="sv">Swedish</option>
+			<option value="th">Thai</option>
+			<option value="tr">Turkish</option>
+			<option value="uk">Ukrainian</option>
+			<option value="vi">Vietnamese</option>
+		</field>
+
+		<field name="gsurl" type="text" default="" label="Custom URL" description="If you wish to use a specific URL place it here." size="50" />
+
+		<field type="spacer" name="spacer98shgbae" label="GOOGLEBADGE" />
+
+		<field name="gb1" type="radio" label="Display Google Badge" default="yes">
+			<option value="yes">Yes</option>
+			<option value="no">No</option>
+		</field>
+
+    		<field name="sbo14" type="list" default="14" label="Force Button Order" description="Set the button display order 1-20">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+			<option value="16">16</option>
+			<option value="17">17</option>
+			<option value="18">18</option>
+			<option value="19">19</option>
+			<option value="20">20</option>
+		</field>
+
+		<field name="gbjembed" type="list" label="Include Google Javascript?" description="If you disable this you must include the Google Javascript Library Reference yourself." default="everytime">
+			<option value="once">Load Once</option>
+			<option value="everytime">Load Every Time</option>
+			<option value="never">Never Load</option>
+		</field>
+
+    		<field name="gbcss" type="text" default="" label="CSS style" description="Insert a style for the button" size="75" />
+
+    		<field name="gbheight" type="text" default="" label="Button Height" description="Set the Button height in pixels." size="5" />
+
+    		<field name="gbwidth" type="text" default="" label="Button Width" description="Set the Button width in pixels." size="5" />
+
+    		<field name="gboutput" type="radio" default="standard" label="Output type" description="Output type (Standard HTML, HTML5)">
+			<option value="standard">Standard</option>
+			<option value="html5">HTML5</option>
+		</field>
+
+    		<field name="gbpage" type="text" default="" label="Google Plus ID" description="Enter a valid Google Plus page ID or Google Plus profile ID" size="75" />
+
+    		<field name="gbpagetype" type="radio" default="author" label="Profile or Page" description="Plus type Profile to Page">
+			<option value="author">Profile</option>
+			<option value="publisher">Page</option>
+		</field>
+
+		<field name="gbfeatures" type="radio" default="standard" label="Google Badge Layout Style" description="Determines the layout of the Google Badge.">
+			<option value="icon">PLG_GB_ICON</option>
+			<option value="small">PLG_GB_SMALL</option>
+			<option value="standard">PLG_GB_STANDARD</option>
+		</field>
+
+    		<field name="gbcustom" type="text" default="" label="Custom Name" description="This will only be applied if you select icon layout style." size="75" />
+
+		<field name="gbiconsize" type="radio" default="large" label="Choose Badge Size" description="This value will only be applied if you select the icon layout style.">
+			<option value="small">Small</option>
+			<option value="medium">Medium</option>
+			<option value="large">Large</option>
+		</field>
+
+		<field name="gblang" type="list" default="en-US" label="Language" description="Language Selection">
+			<option value="ar">Arabic</option>
+			<option value="bg">Bulgarian</option>
+			<option value="ca">Catalan</option>
+			<option value="zh-CN">Chinese (Simplified)</option>
+			<option value="zh-TW">Chinese (Traditional)</option>
+			<option value="hr">Croatian</option>
+			<option value="cs">Czech</option>
+			<option value="da">Danish</option>
+			<option value="nl">Dutch</option>
+			<option value="en-GB">English (UK)</option>
+			<option value="en-US">English (US)</option>
+			<option value="et">Estonian</option>
+			<option value="fil">Filipino</option>
+			<option value="fi">Finnish</option>
+			<option value="fr">French</option>
+			<option value="de">German</option>
+			<option value="el">Greek</option>
+			<option value="iw">Hebrew</option>
+			<option value="hi">Hindi</option>
+			<option value="hu">Hungarian</option>
+			<option value="id">Indonesian</option>
+			<option value="it">Italian</option>
+			<option value="ja">Japanese</option>
+			<option value="ko">Korean</option>
+			<option value="lv">Latvian</option>
+			<option value="lt">Lithuanian</option>
+			<option value="ms">Malay</option>
+			<option value="no">Norwegian</option>
+			<option value="fa">Persian</option>
+			<option value="pl">Polish</option>
+			<option value="pt-BR">Portuguese (Brazil)</option>
+			<option value="pt-PT">Portuguese (Portugal)</option>
+			<option value="ro">Romanian</option>
+			<option value="ru">Russian</option>
+			<option value="sr">Serbian</option>
+			<option value="sk">Slovak</option>
+			<option value="sl">Slovenian</option>
+			<option value="es">Spanish</option>
+			<option value="es-419">Spanish (Latin America)</option>
+			<option value="sv">Swedish</option>
+			<option value="th">Thai</option>
+			<option value="tr">Turkish</option>
+			<option value="uk">Ukrainian</option>
+			<option value="vi">Vietnamese</option>
+		</field>
+
+    		<field name="gbcolortheme" type="radio" default="light" label="Color Theme" description="Color Theme (light or dark)">
+			<option value="light">Light</option>
+			<option value="dark">Dark</option>
+		</field>
+
+		<field type="spacer" name="spacer98shgbae2" label="GOOGLEBADGE2" />
+
+		<field name="gp1" type="radio" label="Display Google Badge" default="yes">
+			<option value="yes">Yes</option>
+			<option value="no">No</option>
+		</field>
+
+    		<field name="sbo15" type="list" default="15" label="Force Button Order" description="Set the button display order 1-20">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+			<option value="16">16</option>
+			<option value="17">17</option>
+			<option value="18">18</option>
+			<option value="19">19</option>
+			<option value="20">20</option>
+		</field>
+
+		<field name="gpjembed" type="list" label="Include Google Javascript?" description="If you disable this you must include the Google Javascript Library Reference yourself." default="everytime">
+			<option value="once">Load Once</option>
+			<option value="everytime">Load Every Time</option>
+			<option value="never">Never Load</option>
+		</field>
+
+    		<field name="gpcss" type="text" default="" label="CSS style" description="Insert a style for the button" size="75" />
+
+    		<field name="gpheight" type="text" default="" label="Button Height" description="Set the Button height in pixels." size="5" />
+
+    		<field name="gpwidth" type="text" default="" label="Button Width" description="Set the Button width in pixels." size="5" />
+
+    		<field name="gpoutput" type="radio" default="standard" label="Output type" description="Output type (Standard HTML, HTML5)">
+			<option value="standard">Standard</option>
+			<option value="html5">HTML5</option>
+		</field>
+
+    		<field name="gppage" type="text" default="" label="Google Plus ID" description="Enter a valid Google Plus page ID or Google Plus profile ID" size="75" />
+
+    		<field name="gppagetype" type="radio" default="author" label="Profile or Page" description="Plus type Profile to Page">
+			<option value="author">Profile</option>
+			<option value="publisher">Page</option>
+		</field>
+
+		<field name="gpfeatures" type="radio" default="standard" label="Google Badge Layout Style" description="Determines the layout of the Google Badge.">
+			<option value="icon">PLG_GB_ICON</option>
+			<option value="small">PLG_GB_SMALL</option>
+			<option value="standard">PLG_GB_STANDARD</option>
+		</field>
+
+    		<field name="gpcustom" type="text" default="" label="Custom Name" description="This will only be applied if you select icon layout style." size="75" />
+
+		<field name="gpiconsize" type="radio" default="large" label="Choose Badge Size" description="This value will only be applied if you select the icon layout style.">
+			<option value="small">Small</option>
+			<option value="medium">Medium</option>
+			<option value="large">Large</option>
+		</field>
+
+		<field name="gplang" type="list" default="en-US" label="Language" description="Language Selection">
+			<option value="ar">Arabic</option>
+			<option value="bg">Bulgarian</option>
+			<option value="ca">Catalan</option>
+			<option value="zh-CN">Chinese (Simplified)</option>
+			<option value="zh-TW">Chinese (Traditional)</option>
+			<option value="hr">Croatian</option>
+			<option value="cs">Czech</option>
+			<option value="da">Danish</option>
+			<option value="nl">Dutch</option>
+			<option value="en-GB">English (UK)</option>
+			<option value="en-US">English (US)</option>
+			<option value="et">Estonian</option>
+			<option value="fil">Filipino</option>
+			<option value="fi">Finnish</option>
+			<option value="fr">French</option>
+			<option value="de">German</option>
+			<option value="el">Greek</option>
+			<option value="iw">Hebrew</option>
+			<option value="hi">Hindi</option>
+			<option value="hu">Hungarian</option>
+			<option value="id">Indonesian</option>
+			<option value="it">Italian</option>
+			<option value="ja">Japanese</option>
+			<option value="ko">Korean</option>
+			<option value="lv">Latvian</option>
+			<option value="lt">Lithuanian</option>
+			<option value="ms">Malay</option>
+			<option value="no">Norwegian</option>
+			<option value="fa">Persian</option>
+			<option value="pl">Polish</option>
+			<option value="pt-BR">Portuguese (Brazil)</option>
+			<option value="pt-PT">Portuguese (Portugal)</option>
+			<option value="ro">Romanian</option>
+			<option value="ru">Russian</option>
+			<option value="sr">Serbian</option>
+			<option value="sk">Slovak</option>
+			<option value="sl">Slovenian</option>
+			<option value="es">Spanish</option>
+			<option value="es-419">Spanish (Latin America)</option>
+			<option value="sv">Swedish</option>
+			<option value="th">Thai</option>
+			<option value="tr">Turkish</option>
+			<option value="uk">Ukrainian</option>
+			<option value="vi">Vietnamese</option>
+		</field>
+
+    		<field name="gpcolortheme" type="radio" default="light" label="Color Theme" description="Color Theme (light or dark)">
+			<option value="light">Light</option>
+			<option value="dark">Dark</option>
+		</field>
+
+		<field type="spacer" name="spacer16ems1" label="EMAILSHARE" />
+
+		<field name="em1" type="radio" label="Display Email Page" default="yes">
+			<option value="yes">Yes</option>
+			<option value="no">No</option>
+		</field>
+
+    		<field name="sbo16" type="list" default="16" label="Force Button Order" description="Set the button display order 1-20">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+			<option value="16">16</option>
+			<option value="17">17</option>
+			<option value="18">18</option>
+			<option value="19">19</option>
+			<option value="20">20</option>
+		</field>
+
+    		<field name="emcss" type="text" default="" label="CSS style" description="Insert a style for the button" size="75" />
+
+    		<field name="emheight" type="text" default="" label="Button Height" description="Set the Button height in pixels." size="5" />
+
+    		<field name="emwidth" type="text" default="" label="Button Width" description="Set the Button width in pixels." size="5" />
+
+		<field name="emstyle" type="radio" default="vertical" label="Email Page Layout Style" description="Determines the size and shape of the Email Page Button.">
+			<option value="horizontal">PLG_EM_HORIZONTAL</option>
+			<option value="vertical">PLG_EM_VERTICAL</option>
+		</field>
+
+		<field type="spacer" name="spacer17ems1" label="FACEBOOKSHARE" />
+
+		<field name="fs1" type="radio" label="Display Facebook Share" default="yes">
+			<option value="yes">Yes</option>
+			<option value="no">No</option>
+		</field>
+
+    		<field name="sbo17" type="list" default="17" label="Force Button Order" description="Set the button display order 1-20">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+			<option value="16">16</option>
+			<option value="17">17</option>
+			<option value="18">18</option>
+			<option value="19">19</option>
+			<option value="20">20</option>
+		</field>
+
+		<field name="fsjembed" type="list" label="Include Javascript?" description="If you disable this you must include the Javascript Library Reference yourself." default="once">
+			<option value="once">Load Once</option>
+			<option value="everytime">Load Every Time</option>
+			<option value="never">Never Load</option>
+		</field>
+
+    		<field name="fscss" type="text" default="" label="CSS style" description="Insert a style for the button" size="75" />
+
+    		<field name="fsheight" type="text" default="" label="Button Height" description="Set the Button height in pixels." size="5" />
+
+    		<field name="fswidth" type="text" default="" label="Button Width" description="Set the Button width in pixels." size="5" />
+
+		<field name="fsstyle" type="radio" default="box_count" label="Facebook Share Layout Style" description="Determines the size and shape of the Facebook Share Button.">
+			<option value="box_count">PLG_FS_BOX_COUNT</option>
+			<option value="button_count">PLG_FS_BUTTON_COUNT</option>
+			<option value="button">PLG_FS_BUTTON</option>
+			<option value="icon">PLG_FS_ICON</option>
+		</field>
+
+		<field name="fsurl" type="text" default="" label="Custom URL" description="If you wish to use a specific URL place it here." size="50" />
+
+		<field type="spacer" name="spacer18ems1" label="DELICIOUSSHARE" />
+
+		<field name="ds1" type="radio" label="Display Delicious Share" default="yes">
+			<option value="yes">Yes</option>
+			<option value="no">No</option>
+		</field>
+
+    		<field name="sbo18" type="list" default="18" label="Force Button Order" description="Set the button display order 1-20">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+			<option value="16">16</option>
+			<option value="17">17</option>
+			<option value="18">18</option>
+			<option value="19">19</option>
+			<option value="20">20</option>
+		</field>
+
+		<field name="dsjembed" type="list" label="Include Javascript?" description="If you disable this you must include the Javascript Library Reference yourself." default="once">
+			<option value="once">Load Once</option>
+			<option value="never">Never Load</option>
+		</field>
+
+    		<field name="dscss" type="text" default="" label="CSS style" description="Insert a style for the button" size="75" />
+
+    		<field name="dsheight" type="text" default="" label="Button Height" description="Set the Button height in pixels." size="5" />
+
+    		<field name="dswidth" type="text" default="" label="Button Width" description="Set the Button width in pixels." size="5" />
+
+		<field name="dsstyle" type="radio" default="tall" label="Delicious Share Layout Style" description="Determines the size and shape of the Delicious Share Button.">
+			<option value="tall">PLG_DS_TALL</option>
+			<option value="wide">PLG_DS_WIDE</option>
+		</field>
+
+		<field name="dsurl" type="text" default="" label="Custom URL" description="If you wish to use a specific URL place it here." size="50" />
+
+		<field name="dstitle" type="text" default="" label="Custom Title" description="If you wish to use a specific Title place it here." size="50" />
+
+		<field type="spacer" name="spacer19ems1" label="FOURSQUARESHARE" />
+
+		<field name="fq1" type="radio" label="Display Foursquare Share" default="yes">
+			<option value="yes">Yes</option>
+			<option value="no">No</option>
+		</field>
+
+    		<field name="sbo19" type="list" default="19" label="Force Button Order" description="Set the button display order 1-20">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+			<option value="16">16</option>
+			<option value="17">17</option>
+			<option value="18">18</option>
+			<option value="19">19</option>
+			<option value="20">20</option>
+		</field>
+
+		<field name="fqjembed" type="list" label="Include Javascript?" description="If you disable this you must include the Javascript Library Reference yourself." default="once">
+			<option value="once">Load Once</option>
+			<option value="never">Never Load</option>
+		</field>
+
+    		<field name="fqcss" type="text" default="" label="CSS style" description="Insert a style for the button" size="75" />
+
+    		<field name="fqheight" type="text" default="" label="Button Height" description="Set the Button height in pixels." size="5" />
+
+    		<field name="fqwidth" type="text" default="" label="Button Width" description="Set the Button width in pixels." size="5" />
+
+		<field name="fqstyle" type="radio" default="standard" label="Foursquare Share Layout Style" description="Determines the size and shape of the Foursquare Share Button.">
+			<option value="standard">PLG_FQ_STANDARD</option>
+			<option value="wide">PLG_FQ_WIDE</option>
+		</field>
+
+		<field name="fqid" type="text" default="" label="User ID" description="If you wish to receive attribution for all shares from your location, place your user ID here (optional)." size="50" />
+
+		<field type="spacer" name="spacer20ems1" label="FOURSQUARELIKE" />
+
+		<field name="fl1" type="radio" label="Display Foursquare Share" default="yes">
+			<option value="yes">Yes</option>
+			<option value="no">No</option>
+		</field>
+
+    		<field name="sbo20" type="list" default="20" label="Force Button Order" description="Set the button display order 1-20">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+			<option value="16">16</option>
+			<option value="17">17</option>
+			<option value="18">18</option>
+			<option value="19">19</option>
+			<option value="20">20</option>
+		</field>
+
+		<field name="fljembed" type="list" label="Include Javascript?" description="If you disable this you must include the Javascript Library Reference yourself." default="once">
+			<option value="once">Load Once</option>
+			<option value="never">Never Load</option>
+		</field>
+
+    		<field name="flcss" type="text" default="" label="CSS style" description="Insert a style for the button" size="75" />
+
+    		<field name="flheight" type="text" default="" label="Button Height" description="Set the Button height in pixels." size="5" />
+
+    		<field name="flwidth" type="text" default="" label="Button Width" description="Set the Button width in pixels." size="5" />
+
+		<field name="flstyle" type="radio" default="standard" label="Foursquare Like Layout Style" description="Determines the size and shape of the Foursquare Like Button.">
+			<option value="standard">PLG_FL_STANDARD</option>
+			<option value="wide">PLG_FL_WIDE</option>
+		</field>
+
+		<field name="flid" type="text" default="" label="Page ID" description="The ID of the Venue, Page that you wish to make available for liking. This field is required." size="50" />
+
+		<field name="flname" type="text" default="" label="Entity Name" description="This is the Name of the Venue, Page you wish to make available for liking. This field is optional." size="50" />
+
+			</fieldset>
+		</fields>
+	</config>
+</extension>
